@@ -27,6 +27,8 @@
       justify-content: center;
       align-items: center;
       padding: 4px;
+
+      perspective: 500px; /* مهم لإظهار تأثير ثلاثي الأبعاد */
     }
 
     .top-section img {
@@ -34,12 +36,10 @@
       max-height: 35px;
       object-fit: contain;
       transition: transform 0.2s ease;
-      /* نضيف transition حتى يكون التحريك سلس */
     }
 
     .top-section img.active {
-      transform: translateZ(-20px) scale(0.9);
-      /* تحرك الصورة للخلف مع تصغير بسيط */
+      transform: translateY(-10px) scale(0.9);
     }
 
     .bottom-section {
