@@ -27,21 +27,32 @@
       justify-content: center;
       align-items: center;
       padding: 4px;
-
-      perspective: 500px; /* لازم لإظهار العمق */
+      perspective: 600px; /* عمق واضح */
     }
 
     .top-section img {
       max-width: 100%;
       max-height: 35px;
       object-fit: contain;
-      transition: transform 0.2s ease;
-      transform-style: preserve-3d; /* ضروري لتفعيل تأثير العمق */
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
     }
 
-    .top-section img.active {
-      transform: translateZ(-30px);
-      /* يجعل الصورة ترجع للخلف فعلياً */
+    /* الحركة عبر أنيميشن */
+    .top-section img.animate-back {
+      animation: goBack 0.5s ease;
+    }
+
+    @keyframes goBack {
+      0% {
+        transform: translateZ(0px);
+      }
+      50% {
+        transform: translateZ(-80px);
+      }
+      100% {
+        transform: translateZ(0px);
+      }
     }
 
     .bottom-section {
@@ -69,10 +80,11 @@
     const img = document.getElementById('cih-logo');
 
     window.addEventListener('keydown', () => {
-      img.classList.add('active');
+      img.classList.add('animate-back');
+      // إزالة الكلاس بعد انتهاء الأنيميشن
       setTimeout(() => {
-        img.classList.remove('active');
-      }, 200);
+        img.classList.remove('animate-back');
+      }, 500);
     });
   </script>
 </body>
