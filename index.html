@@ -28,7 +28,7 @@
       align-items: center;
       padding: 4px;
 
-      perspective: 500px; /* مهم لإظهار تأثير ثلاثي الأبعاد */
+      perspective: 500px;
     }
 
     .top-section img {
@@ -36,10 +36,13 @@
       max-height: 35px;
       object-fit: contain;
       transition: transform 0.2s ease;
+      /* حتى نضيف تأثير العمق نستخدم translateZ مع perspective */
     }
 
     .top-section img.active {
-      transform: translateY(-10px) scale(0.9);
+      transform: translateY(10px) scale(0.95);
+      /* تهبط 10 بيكسل للأسفل مع تصغير بسيط */
+      /* هذا يعطي إحساس بأنها ترجع للخلف */
     }
 
     .bottom-section {
