@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>أيقونة CIH Bank</title>
   <style>
     body {
-      background-color: #bfbfbf; /* خلفية رمادية - الهيكل */
+      background-color: #bfbfbf;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,13 +16,13 @@
 
     .icon-container {
       width: 110px;
-      background-color: #9db194; /* الأخضر الباهت */
+      background-color: #9db194;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .top-section {
       background-color: white;
-      height: 55px; /* ⬅️ تم تصغيره */
+      height: 55px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -31,8 +31,15 @@
 
     .top-section img {
       max-width: 100%;
-      max-height: 35px; /* ⬅️ صورة أصغر لتناسب المساحة */
+      max-height: 35px;
       object-fit: contain;
+      transition: transform 0.2s ease;
+      /* نضيف transition حتى يكون التحريك سلس */
+    }
+
+    .top-section img.active {
+      transform: translateZ(-20px) scale(0.9);
+      /* تحرك الصورة للخلف مع تصغير بسيط */
     }
 
     .bottom-section {
@@ -49,12 +56,24 @@
 
   <div class="icon-container">
     <div class="top-section">
-      <img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH Bank Logo">
+      <img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH Bank Logo" id="cih-logo" />
     </div>
     <div class="bottom-section">
       CIH
     </div>
   </div>
 
+  <script>
+    const img = document.getElementById('cih-logo');
+
+    window.addEventListener('keydown', () => {
+      if (!img.classList.contains('active')) {
+        img.classList.add('active');
+        setTimeout(() => {
+          img.classList.remove('active');
+        }, 200);
+      }
+    });
+  </script>
 </body>
 </html>
