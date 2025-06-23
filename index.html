@@ -28,7 +28,7 @@
       align-items: center;
       padding: 4px;
 
-      perspective: 500px;
+      perspective: 500px; /* لازم لإظهار العمق */
     }
 
     .top-section img {
@@ -36,13 +36,12 @@
       max-height: 35px;
       object-fit: contain;
       transition: transform 0.2s ease;
-      /* حتى نضيف تأثير العمق نستخدم translateZ مع perspective */
+      transform-style: preserve-3d; /* ضروري لتفعيل تأثير العمق */
     }
 
     .top-section img.active {
-      transform: translateY(10px) scale(0.95);
-      /* تهبط 10 بيكسل للأسفل مع تصغير بسيط */
-      /* هذا يعطي إحساس بأنها ترجع للخلف */
+      transform: translateZ(-30px);
+      /* يجعل الصورة ترجع للخلف فعلياً */
     }
 
     .bottom-section {
@@ -70,12 +69,10 @@
     const img = document.getElementById('cih-logo');
 
     window.addEventListener('keydown', () => {
-      if (!img.classList.contains('active')) {
-        img.classList.add('active');
-        setTimeout(() => {
-          img.classList.remove('active');
-        }, 200);
-      }
+      img.classList.add('active');
+      setTimeout(() => {
+        img.classList.remove('active');
+      }, 200);
     });
   </script>
 </body>
