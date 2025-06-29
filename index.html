@@ -15,19 +15,21 @@
     }.container {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: 300px;
+  width: 240px;   /* العرض بنسبة 4 */
+  height: 300px;  /* الطول بنسبة 5 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .white-rect {
   background-color: #ffffff;
-  height: 100px;
+  flex: 1;
 }
 
 .gray-square {
   background-color: #d9d9d9;
-  width: 100%;
-  height: 300px;
+  flex: 1;
 }
 
   </style>
