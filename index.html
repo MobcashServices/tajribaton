@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع بجانبه الأيمن</title>
+  <title>نموذج مع زر رجوع على اليسار</title>
   <style>
     body {
       margin: 0;
@@ -22,6 +22,7 @@
       display: flex;
       align-items: flex-start; /* محاذاة الرأس */
       gap: 10px; /* مسافة بين النموذج والزر */
+      flex-direction: row-reverse; /* لعكس الاتجاه وجعل الزر على اليسار */
     }
 
     .container {
@@ -75,13 +76,13 @@
 </head>
 <body>
   <div class="wrapper">
+    <!-- زر الرجوع على اليسار -->
+    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
+
     <div class="container">
       <div class="white-rect"></div>
       <div class="gray-square"></div>
     </div>
-
-    <!-- زر الرجوع بجانب النموذج -->
-    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
   </div>
 </body>
 </html>
