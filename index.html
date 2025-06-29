@@ -4,7 +4,55 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>نموذج بحواف شبه حادة</title>
+  <style><!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>نموذج بحواف شبه حادة وصغير</title>
   <style>
+    body {
+      margin: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 480px;
+      height: 570px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      border-radius: 2px; /* حواف شبه حادة أكثر */
+      overflow: hidden;
+      background: transparent;
+    }
+
+    .white-rect {
+      background-color: #ffffff;
+      height: 35%;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+    }
+
+    .gray-square {
+      background-color: #d9d9d9;
+      height: 65%;
+      border-radius: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="white-rect"></div>
+    <div class="gray-square"></div>
+  </div>
+</body>
+</html>
     body {
       margin: 0;
       background-color: #f0f0f0;
