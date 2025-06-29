@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع شعار وصندوق</title>
+  <title>نموذج مع نسخ المعلومات</title>
   <style>
     body {
       margin: 0;
@@ -69,7 +69,7 @@
       width: 100%;
       height: auto;
       position: relative;
-      padding: 10px;
+      padding: 10px 12px;
       box-sizing: border-box;
     }
 
@@ -80,23 +80,24 @@
       border-radius: 8px;
       font-size: 13px;
       line-height: 1.4;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       text-align: right;
       direction: rtl;
     }
 
-    .info-line {
+    .info-block {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: transparent;
-      margin: 6px 0;
       font-size: 14px;
+      margin: 6px 0;
       color: #1c1c1c;
     }
 
     .info-text {
-      color: #1c1c1c;
+      flex: 1;
+      text-align: right;
+      padding-left: 8px;
     }
 
     .copy-btn {
@@ -109,7 +110,6 @@
     .copy-icon {
       width: 18px;
       height: 18px;
-      filter: brightness(0) saturate(100%) invert(55%) sepia(93%) saturate(487%) hue-rotate(47deg) brightness(92%) contrast(86%);
     }
   </style>
 </head>
@@ -126,24 +126,24 @@
           باستخدام معلومات الدفع المدرجة أدناه.
         </div>
 
-        <div class="info-line">
+        <div class="info-block">
           <span class="info-text">رقم الهاتف 0681700097</span>
           <button class="copy-btn" onclick="copyToClipboard('0681700097')">
-            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
           </button>
         </div>
 
-        <div class="info-line">
+        <div class="info-block">
           <span class="info-text">السبب SRV</span>
           <button class="copy-btn" onclick="copyToClipboard('SRV')">
-            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
           </button>
         </div>
 
-        <div class="info-line">
+        <div class="info-block">
           <span class="info-text">اسم الحساب Hind</span>
           <button class="copy-btn" onclick="copyToClipboard('Hind')">
-            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
           </button>
         </div>
       </div>
@@ -154,7 +154,7 @@
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(function () {
         alert("تم النسخ: " + text);
-      }, function (err) {
+      }, function () {
         alert("حدث خطأ أثناء النسخ");
       });
     }
