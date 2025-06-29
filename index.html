@@ -67,14 +67,14 @@
     .gray-square {
       background: #eeeeee;
       width: 100%;
-      height: 400px;
+      height: auto;
       position: relative;
       padding: 10px;
       box-sizing: border-box;
     }
 
     .notice {
-      background-color: #2f5d30; /* اللون الأخضر الداكن */
+      background-color: #2f5d30;
       color: white;
       padding: 6px 10px;
       border-radius: 8px;
@@ -83,7 +83,33 @@
       margin-bottom: 10px;
       text-align: right;
       direction: rtl;
-      white-space: normal;
+    }
+
+    .info-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+      margin: 6px 0;
+      font-size: 14px;
+      color: #1c1c1c;
+    }
+
+    .info-text {
+      color: #1c1c1c;
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .copy-icon {
+      width: 18px;
+      height: 18px;
+      filter: brightness(0) saturate(100%) invert(55%) sepia(93%) saturate(487%) hue-rotate(47deg) brightness(92%) contrast(86%);
     }
   </style>
 </head>
@@ -99,8 +125,39 @@
           قبل التقديم، يرجى تحويل الأموال خلال <strong>10 دقائق</strong><br>
           باستخدام معلومات الدفع المدرجة أدناه.
         </div>
+
+        <div class="info-line">
+          <span class="info-text">رقم الهاتف 0681700097</span>
+          <button class="copy-btn" onclick="copyToClipboard('0681700097')">
+            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+          </button>
+        </div>
+
+        <div class="info-line">
+          <span class="info-text">السبب SRV</span>
+          <button class="copy-btn" onclick="copyToClipboard('SRV')">
+            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+          </button>
+        </div>
+
+        <div class="info-line">
+          <span class="info-text">اسم الحساب Hind</span>
+          <button class="copy-btn" onclick="copyToClipboard('Hind')">
+            <img class="copy-icon" src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="copy" />
+          </button>
+        </div>
       </div>
     </div>
   </div>
+
+  <script>
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(function () {
+        alert("تم النسخ: " + text);
+      }, function (err) {
+        alert("حدث خطأ أثناء النسخ");
+      });
+    }
+  </script>
 </body>
 </html>
