@@ -3,43 +3,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع شعار وصندوق</title>
+  <title>نموذج تحويل</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-
-    .wrapper {
-      display: flex;
-      align-items: flex-start;
     }
 
     .container {
-      width: 400px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
-      border-radius: 6px;
+      width: 380px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
       overflow: hidden;
-      background-color: #fff;
-      position: relative;
+      padding: 0;
     }
 
     .header {
-      background: #ffffff;
-      height: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
-      position: relative;
+      height: 80px;
+      border-bottom: 1px solid #eee;
     }
 
     .header img {
@@ -48,111 +39,73 @@
       object-fit: contain;
     }
 
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 28px;
-      color: #999;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-
-    .gray-square {
-      background: #eeeeee;
-      width: 100%;
-      min-height: 400px;
-      padding: 10px;
-      box-sizing: border-box;
+    .content {
+      padding: 16px;
+      background-color: #eeeeee;
     }
 
     .notice {
       background-color: #2f5d30;
       color: white;
-      padding: 6px 10px;
-      border-radius: 8px;
       font-size: 13px;
-      line-height: 1.4;
-      margin-bottom: 10px;
-      text-align: right;
+      padding: 8px 12px;
+      border-radius: 10px;
+      margin-bottom: 16px;
+      line-height: 1.5;
     }
 
     .info-line {
+      background-color: transparent;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      background: transparent;
-      padding: 6px 0;
+      align-items: center;
+      color: #163a61;
       font-size: 14px;
-      color: #183153; /* الأزرق الغامق كما في الصورة */
-      border-bottom: 1px solid #dcdcdc;
+      margin-bottom: 12px;
     }
 
     .info-line span {
-      flex-grow: 1;
+      white-space: nowrap;
     }
 
-    .copy-btn {
-      background: none;
-      border: none;
+    .copy-icon {
+      width: 20px;
+      height: 20px;
       cursor: pointer;
-      padding: 0;
       margin-right: 8px;
-    }
-
-    .copy-btn img {
-      width: 18px;
-      height: 18px;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="container">
-      <div class="header">
-        <img src="https://i.postimg.cc/zBxrCBvP/cash-plus-mobcash.png" alt="Cash Plus Logo" />
-        <button class="close-btn" onclick="window.location.href='home.html'">&times;</button>
+  <div class="container">
+    <div class="header">
+      <img src="https://i.postimg.cc/zBxrCBvP/cash-plus-mobcash.png" alt="Logo">
+    </div>
+    <div class="content">
+      <div class="notice">
+        قبل التقديم، يرجى تحويل الأموال خلال <strong>10 دقائق</strong><br>
+        باستخدام معلومات الدفع المدرجة أدناه.
       </div>
-      <div class="gray-square">
-        <div class="notice">
-          قبل التقديم، يرجى تحويل الأموال خلال <strong>10 دقائق</strong><br>
-          باستخدام معلومات الدفع المدرجة أدناه.
-        </div>
 
-        <!-- معلومات التحويل -->
-        <div class="info-line">
-          <span>رقم الهاتف 0681700097</span>
-          <button class="copy-btn" onclick="copyToClipboard('0681700097')">
-            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
-          </button>
-        </div>
+      <div class="info-line">
+        <span>رقم الهاتف 0681700097</span>
+        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('0681700097')">
+      </div>
 
-        <div class="info-line">
-          <span>السبب التحويل SRV</span>
-          <button class="copy-btn" onclick="copyToClipboard('SRV')">
-            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
-          </button>
-        </div>
+      <div class="info-line">
+        <span>السبب التحويل SRV</span>
+        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('SRV')">
+      </div>
 
-        <div class="info-line">
-          <span>إسم الحساب Hind</span>
-          <button class="copy-btn" onclick="copyToClipboard('Hind')">
-            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
-          </button>
-        </div>
-
+      <div class="info-line">
+        <span>إسم الحساب Hind</span>
+        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('Hind')">
       </div>
     </div>
   </div>
 
   <script>
-    function copyToClipboard(text) {
+    function copyText(text) {
       navigator.clipboard.writeText(text).then(() => {
         alert('تم النسخ: ' + text);
       });
