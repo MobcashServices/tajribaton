@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع خارجي</title>
+  <title>نموذج مع زر رجوع على اليسار</title>
   <style>
     body {
       margin: 0;
@@ -28,14 +28,16 @@
       border-radius: 6px;
       overflow: hidden;
       background: transparent;
+      position: relative;
       z-index: 1;
     }
 
-    /* زر الرجوع خارج النموذج في الجانب الأيمن العلوي */
+    /* زر الرجوع على اليسار، أمام النموذج */
     .close-btn {
       position: fixed;
-      top: 15px;
-      right: 15px;
+      top: 50%;
+      left: calc(50% - 220px); /* تقريبًا 20px يسار النموذج (400px / 2 = 200 + 20) */
+      transform: translateY(-50%);
       font-size: 28px;
       color: #666;
       text-decoration: none;
@@ -65,7 +67,7 @@
   </style>
 </head>
 <body>
-  <!-- زر الرجوع خارجي -->
+  <!-- زر الرجوع على اليسار أمام النموذج -->
   <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
 
   <div class="container">
