@@ -1,4 +1,99 @@
-<!DOCTYPE html>
+<!DOCTYPE html><html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اسم الموقع</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }header {
+  background-color: #004d7a;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+nav {
+  background-color: #006699;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 10px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* الصندوق المنقسم (أبيض + رمادي) */
+.split-box {
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+  overflow: hidden; /* حتى يختفي أي بروز للزوايا */
+}
+
+.split-box .top-rect {
+  background-color: #ffffff;
+  padding: 40px 30px;
+}
+
+.split-box .bottom-square {
+  background-color: #d9d9d9;
+  padding: 40px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* مربع متساوي الأبعاد */
+  aspect-ratio: 1 / 1;
+}
+
+footer {
+  background-color: #004d7a;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+
+  </style>
+</head>
+<body>  <header>
+    <h1>مرحبا بك في موقعنا</h1>
+  </header>  <nav>
+    <a href="#">الرئيسية</a>
+    <a href="#">من نحن</a>
+    <a href="#">الخدمات</a>
+    <a href="#">اتصل بنا</a>
+  </nav>  <main>
+    <div class="split-box">
+      <div class="top-rect">
+        <h2>عنوان المستطيل الأبيض</h2>
+        <p>يمكنك وضع أي محتوى هنا.</p>
+      </div>
+      <div class="bottom-square">
+        <h2>عنوان المربع الرمادي</h2>
+      </div>
+    </div>
+  </main>  <footer>
+    &copy; 2025 جميع الحقوق محفوظة
+  </footer></body>
+</html><!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
