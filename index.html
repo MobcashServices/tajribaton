@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع على اليسار</title>
+  <title>نموذج مع زر رجوع أعلى اليمين</title>
   <style>
     body {
       margin: 0;
@@ -15,10 +15,10 @@
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       padding: 10px;
       box-sizing: border-box;
-      position: relative;
     }
 
     .container {
+      position: relative;
       display: flex;
       flex-direction: column;
       width: 90%;
@@ -28,16 +28,13 @@
       border-radius: 6px;
       overflow: hidden;
       background: transparent;
-      position: relative;
-      z-index: 1;
     }
 
-    /* زر الرجوع على اليسار، أمام النموذج */
+    /* زر الرجوع داخل النموذج أعلى اليمين */
     .close-btn {
-      position: fixed;
-      top: 50%;
-      left: calc(50% - 220px); /* تقريبًا 20px يسار النموذج (400px / 2 = 200 + 20) */
-      transform: translateY(-50%);
+      position: absolute;
+      top: 10px;
+      right: 10px;
       font-size: 28px;
       color: #666;
       text-decoration: none;
@@ -47,7 +44,7 @@
       padding: 0;
       line-height: 1;
       transition: color 0.2s ease;
-      z-index: 9999;
+      z-index: 10;
     }
     .close-btn:hover {
       color: #000;
@@ -67,10 +64,10 @@
   </style>
 </head>
 <body>
-  <!-- زر الرجوع على اليسار أمام النموذج -->
-  <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
-
   <div class="container">
+    <!-- زر الرجوع أعلى اليمين داخل النموذج -->
+    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
+
     <div class="white-rect"></div>
     <div class="gray-square"></div>
   </div>
