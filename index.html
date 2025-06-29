@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>هيكل فارغ</title>
   <style>
     body {
       margin: 0;
@@ -10,75 +10,56 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      height: 100vh;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 10px;
-      box-sizing: border-box;
-    }/* غلاف لموضع العنصر والنموذج */
-.wrapper {
-  position: relative;
-  display: inline-block;
+    }.container {
+  position: relative;   /* لتثبيت موقع علامة الإغلاق */
+  display: flex;
+  flex-direction: column;
+  width: 700px;   /* نفس العرض الذي حدّدته */
+  height: 600px;  /* نفس الارتفاع */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-/* زر الرجوع (X) */
+/* علامة الإغلاق البسيطة */
 .close-btn {
   position: absolute;
-  top: 12px;            /* أمام رأس النموذج تقريباً */
-  right: -42px;         /* خارج النموذج جهة اليمين */
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 2px solid #888;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  top: 12px;           /* قرب رأس الحاوية */
+  right: -38px;        /* خارج الحاوية إلى اليمين */
+  font-size: 28px;
+  color: #888;         /* لون رمادي بسيط */
   text-decoration: none;
-  color: #444;
-  font-size: 20px;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  line-height: 1;
   cursor: pointer;
-  transition: background 0.2s;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
 .close-btn:hover {
-  background: #f2f2f2;
-}
-
-/* النموذج الأساسي */
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 90vw;          /* متجاوب */
-  max-width: 400px;
-  aspect-ratio: 4 / 5;  /* نسبة العرض:الارتفاع */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-  border-radius: 6px;   /* حواف شبه حادة */
-  overflow: hidden;
-  background: transparent;
+  color: #555;
 }
 
 .white-rect {
   background-color: #ffffff;
-  flex: 0 0 35%;  /* 35% من الارتفاع */
+  flex: 1;
 }
 
 .gray-square {
   background-color: #d9d9d9;
-  flex: 1;        /* باقي الارتفاع */
+  flex: 1;
 }
 
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <!-- علامة الرجوع -->
-    <a href="home.html" class="close-btn">&times;</a><div class="container">
-  <div class="white-rect"></div>
-  <div class="gray-square"></div>
-</div>
-
+  <div class="container">
+    <!-- علامة X بسيطة للرجوع إلى الصفحة الرئيسية -->
+    <a href="home.html" class="close-btn">&times;</a>
+    <div class="white-rect"></div>
+    <div class="gray-square"></div>
   </div>
 </body>
 </html>
