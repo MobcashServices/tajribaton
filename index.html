@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع على اليسار</title>
+  <title>نموذج مع صورة في الجزء الأبيض</title>
   <style>
     body {
       margin: 0;
@@ -17,12 +17,10 @@
       box-sizing: border-box;
     }
 
-    /* الحاوية الخارجية تضع النموذج والزر بجانب بعض أفقياً */
     .wrapper {
       display: flex;
-      align-items: flex-start; /* محاذاة الرأس */
-      gap: 10px; /* مسافة بين النموذج والزر */
-      flex-direction: row-reverse; /* لعكس الاتجاه وجعل الزر على اليسار */
+      align-items: flex-start;
+      gap: 10px;
     }
 
     .container {
@@ -42,6 +40,17 @@
       flex: 0 0 35%;
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .white-rect img {
+      max-width: 90%;
+      height: auto;
+      object-fit: contain;
     }
 
     .gray-square {
@@ -49,7 +58,6 @@
       flex: 1;
     }
 
-    /* زر الرجوع بجانب النموذج */
     .close-btn {
       font-size: 32px;
       color: #666;
@@ -76,13 +84,14 @@
 </head>
 <body>
   <div class="wrapper">
-    <!-- زر الرجوع على اليسار -->
-    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
-
     <div class="container">
-      <div class="white-rect"></div>
+      <div class="white-rect">
+        <img src="https://i.postimg.cc/zBxrCBvP/cash-plus-mobcash.png" alt="شعار كاش بلس موبكاش" />
+      </div>
       <div class="gray-square"></div>
     </div>
+
+    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
   </div>
 </body>
 </html>
