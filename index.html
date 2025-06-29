@@ -2,7 +2,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج متجاوب مع زر رجوع</title>
+  <title>نموذج تفاعلي</title>
   <style>
     body {
       margin: 0;
@@ -11,59 +11,120 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
       padding: 10px;
       box-sizing: border-box;
     }.container {
-  position: relative;               /* لتثبيت زر الرجوع */
+  position: relative;
   display: flex;
   flex-direction: column;
-  width: 90%;                       /* عرض نسبي ليلائم كل الأجهزة */
-  max-width: 400px;                 /* أقصى عرض */
-  aspect-ratio: 4 / 5;              /* النسبة 4:5 */
+  width: 90%;
+  max-width: 400px;
+  aspect-ratio: 4 / 5; /* النسبة المطلوبة */
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-  border-radius: 6px;               /* حواف شبه حادة بسيطة */
+  border-radius: 6px; /* حواف شبه حادة */
   overflow: hidden;
   background: transparent;
 }
 
-/* زر الرجوع خارج النموذج على اليمين */
-.back-btn {
+/* زر × جهة اليسار للرجوع */
+.close-btn {
   position: absolute;
-  top: 12px;
-  right: -44px;                    /* وضعه خارج الحاوية */
-  font-size: 30px;
-  text-decoration: none;
+  top: 10px;
+  left: 10px;
+  font-size: 22px;
   color: #666;
+  text-decoration: none;
   background: transparent;
-  line-height: 1;
+  border: none;
   cursor: pointer;
-  transition: color 0.2s;
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
 }
+.close-btn:hover { color: #000; }
 
-.back-btn:hover {
-  color: #333;
-}
-
+/* الجزء العلوي الأبيض */
 .white-rect {
   background: #ffffff;
-  flex: 0 0 35%;                   /* 35% من الارتفاع */
+  flex: 0 0 35%;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  text-align: center;
 }
+.white-rect h2 { margin: 0 0 8px; font-size: 1.2rem; }
+.white-rect p { margin: 0; font-size: 0.9rem; color: #666; }
 
+/* الجزء السفلي الرمادي */
 .gray-square {
   background: #d9d9d9;
-  flex: 1;                          /* المساحة المتبقية */
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-sizing: border-box;
 }
+
+/* نموذج داخل الجزء الرمادي */
+.form-wrapper {
+  width: 100%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.form-group label { margin-bottom: 4px; font-size: 0.85rem; }
+.form-group input {
+  padding: 8px 10px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+.btn-submit {
+  width: 100%;
+  padding: 10px;
+  background: #004d7a;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.btn-submit:hover { background: #00385a; }
 
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- زر رجوع إلى الصفحة السابقة -->
-    <a href="javascript:history.back();" class="back-btn" title="رجوع">&#x2190;</a><div class="white-rect"></div>
-<div class="gray-square"></div>
+    <!-- زر × يرجع إلى الصفحة الرئيسية -->
+    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a><!-- الجزء الأبيض: عنوان ونص -->
+<div class="white-rect">
+  <h2>عنوان النموذج</h2>
+  <p>وصف مختصر للنموذج أو تعليمات سريعة.</p>
+</div>
+
+<!-- الجزء الرمادي: نموذج بسيط -->
+<div class="gray-square">
+  <form class="form-wrapper" action="#" method="post">
+    <div class="form-group">
+      <label for="name">الاسم:</label>
+      <input type="text" id="name" name="name" placeholder="اكتب اسمك" required>
+    </div>
+    <div class="form-group">
+      <label for="email">البريد الإلكتروني:</label>
+      <input type="email" id="email" name="email" placeholder="example@mail.com" required>
+    </div>
+    <button type="submit" class="btn-submit">تأكيد</button>
+  </form>
+</div>
 
   </div>
 </body>
