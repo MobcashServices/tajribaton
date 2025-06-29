@@ -1,287 +1,127 @@
-<!DOCTYPE html>  
-<html lang="ar" dir="rtl">  
-<head>  
-  <meta charset="UTF-8" />  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>  
-  <title>Mobcash Services</title>  
-  <style>  
-    body {  
-      margin: 0;  
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;  
-      background-color: #f2f2f2;  
-    }  
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>الواجهة الرئيسية – Mobcash</title>
 
-    header {  
-      background-color: #ffffff;  
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);  
-      padding: 10px 16px;  
-    }  
+  <!-- الخط الافتراضي -->
+  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet"/>
 
-    .header-content {  
-      display: flex;  
-      align-items: center;  
-      justify-content: space-between;  
-    }  
+  <style>
+    /* إعدادات أساسية */
+    *            { box-sizing: border-box; }
+    body         { margin: 0; font-family: 'Almarai', sans-serif; background:#f2f4f6; overflow-x:hidden; }
+    h2           { margin-top: 0; }
 
-    .menu-icon {  
-      font-size: 24px;  
-      cursor: pointer;  
-      color: #2c3e50;  
-    }  
+    /* أيقونة البنك */
+    .bank-icon-wrapper  { display:flex; justify-content:center; padding:40px 0; }
+    .bank-icon          { width:120px; cursor:pointer; transition:transform .25s; }
+    .bank-icon:hover    { transform:scale(1.08); }
 
-    .site-title {  
-      font-size: 18px;  
-      font-weight: bold;  
-      color: #1a1a1a;  
-      text-align: center;  
-      flex-grow: 1;  
-      line-height: 1.2;  
-    }  
+    /* طبقة التعتيم الرمادية */
+    #overlay     {
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.45);
+      display:none;            /* مخفي مبدئياً */
+      align-items:center; justify-content:center;
+      z-index:999;
+      backdrop-filter:blur(2px);
+    }
 
-    .profile-section {  
-      display: flex;  
-      align-items: center;  
-      gap: 10px;  
-    }  
+    /* إطار المودال (شفّاف) */
+    .modal-frame  {
+      background:transparent;  /* شفاف تماماً */
+      padding:0; border:none;
+      width:min(90vw,480px);
+    }
 
-    .profile-info {  
-      display: flex;  
-      flex-direction: column;  
-      align-items: flex-end;  
-      font-size: 13px;  
-      line-height: 1.2;  
-      user-select: all;  
-    }  
+    /* الحاوية الداخلية ذات خلفيّة شبه شفّافة حتى تبقى الحقول مقروءة */
+    .modal-inner {
+      background:rgba(255,255,255,.75);   /* 25% شفافية */
+      border-radius:18px;
+      box-shadow:0 4px 24px rgba(0,0,0,.2);
+      padding:24px 32px;
+      backdrop-filter:blur(6px);
+      position:relative;
+    }
 
-    #userIdDisplay {  
-      color: #444;  
-      font-weight: 500;  
-      font-size: 13px;  
-    }  
+    .close-btn {
+      position:absolute; top:10px; left:10px;
+      font-size:24px; cursor:pointer;
+      border:none; background:transparent; color:#333;
+    }
 
-    .profile-label {  
-      color: #2e7d32;  
-      font-weight: bold;  
-      font-size: 13px;  
-      margin-right: 2px;  
-    }  
+    /* حقول ثلاثيّة الأبعاد بسيطة */
+    .modal-inner input,
+    .modal-inner select {
+      width:100%; padding:10px 12px; margin:8px 0 18px;
+      border:1px solid #ccc;
+      border-radius:6px;
+      background:rgba(255,255,255,.6);
+      box-shadow:inset 2px 2px 4px rgba(255,255,255,.6),
+                 inset -2px -2px 4px rgba(0,0,0,.05);
+      font-size:15px;
+    }
 
-    .profile-icon {  
-      width: 46px;  
-      height: 46px;  
-      border-radius: 50%;  
-      background-color: #e0e0e0;  
-      display: flex;  
-      align-items: center;  
-      justify-content: center;  
-    }  
+    .modal-inner button[type="submit"] {
+      width:100%; padding:12px; font-size:16px;
+      border:none; border-radius:8px;
+      background:#28a745; color:#fff;
+      cursor:pointer;
+      transition:background .2s;
+      box-shadow:0 3px 6px rgba(0,0,0,.15);
+    }
+    .modal-inner button[type="submit"]:hover { background:#23913d; }
+  </style>
+</head>
+<body>
 
-    .profile-icon svg {  
-      width: 28px;  
-      height: 28px;  
-    }  
+  <!-- أيقونة تفتح النموذج -->
+  <div class="bank-icon-wrapper">
+    <img src="https://i.postimg.cc/g07jHhK5/cih.png"
+         alt="CIH Bank"
+         class="bank-icon"
+         id="openModal">
+  </div>
 
-    .account-section {  
-      background-color: #f2f2f2;  
-      padding: 20px 15px 10px;  
-    }  
+  <!-- طبقة التعتيم + المودال -->
+  <div id="overlay">
+    <div class="modal-frame">
+      <div class="modal-inner">
+        <button class="close-btn" id="closeModal">&times;</button>
+        <h2>نموذج تحويل بنكي</h2>
 
-    .account-header {  
-      font-size: 15px;  
-      font-weight: 500;  
-      color: #888;  
-      margin-bottom: 8px;  
-      padding-right: 2px;  
-      text-align: right;  
-    }  
+        <!-- نموذجك الشفّاف -->
+        <form>
+          <label>اسم صاحب الحساب</label>
+          <input type="text" placeholder="مثال: محمد الأحمدي" required>
 
-    .account-option {  
-      background-color: #fff;  
-      border-radius: 14px;  
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);  
-      overflow: hidden;  
-      position: relative;  
-    }  
+          <label>رقم الحساب (IBAN)</label>
+          <input type="text" placeholder="MA64 1234 5678 9012 3456 7890" required>
 
-    .option-item {  
-      display: flex;  
-      align-items: center;  
-      padding: 14px;  
-      cursor: pointer;  
-      position: relative;  
-    }  
+          <label>المبلغ بالدرهم</label>
+          <input type="number" min="1" step="0.01" placeholder="0.00" required>
 
-    .option-item:not(:last-child)::after {  
-      content: "";  
-      position: absolute;  
-      bottom: 0;  
-      right: 64px;  
-      left: 0;  
-      height: 1px;  
-      background-color: #dcdcdc;  
-    }  
-
-    .icon-circle {  
-      width: 38px;  
-      height: 38px;  
-      border-radius: 50%;  
-      display: flex;  
-      align-items: center;  
-      justify-content: center;  
-      margin-left: 12px;  
-      background-color: #fff;  
-      box-shadow: 0 0 8px rgba(0,0,0,0.12);  
-      overflow: hidden;  
-      transition: transform 0.3s ease;  
-    }  
-
-    .icon-circle img {  
-      width: 110%;  
-      height: 110%;  
-      object-fit: contain;  
-      filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));  
-      transition: filter 0.3s ease;  
-    }  
-
-    .option-item:hover .icon-circle {  
-      transform: scale(1.1);  
-      box-shadow: 0 0 12px rgba(0, 128, 0, 0.6);  
-    }  
-
-    .option-item:hover .icon-circle img {  
-      filter: drop-shadow(0 0 5px rgba(0,128,0,0.8));  
-    }  
-
-    .option-text {  
-      flex-grow: 1;  
-      color: #000;  
-      font-size: 15px;  
-      font-weight: 500;  
-    }  
-
-    .arrow-icon {  
-      color: #888;  
-      font-size: 16px;  
-    }  
-
-    @media (max-width: 600px) {  
-      .site-title {  
-        font-size: 16px;  
-      }  
-
-      .profile-icon {  
-        width: 40px;  
-        height: 40px;  
-      }  
-
-      .profile-icon svg {  
-        width: 24px;  
-        height: 24px;  
-      }  
-
-      .profile-info {  
-        font-size: 12px;  
-      }  
-
-      .account-header {  
-        font-size: 14px;  
-      }  
-
-      .option-text {  
-        font-size: 14px;  
-      }  
-
-      .icon-circle {  
-        width: 32px;  
-        height: 32px;  
-        margin-left: 8px;  
-      }  
-
-      .icon-circle img {  
-        width: 110%;  
-        height: 110%;  
-      }  
-    }  
-  </style>  
-</head>  
-<body>  
-
-  <header>  
-    <div class="header-content">  
-      <div class="profile-section">  
-        <div class="profile-icon">  
-          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">  
-            <circle cx="32" cy="20" r="10" fill="#ffffff"/>  
-            <ellipse cx="32" cy="48" rx="18" ry="10" fill="#ffffff"/>  
-          </svg>  
-        </div>  
-        <div class="profile-info">  
-          <div id="userIdDisplay">id: </div>  
-          <div class="profile-label">الملف الشخصي</div>  
-        </div>  
-      </div>  
-      <div class="site-title">Mobcash<br>Services</div>  
-      <div class="menu-icon">&#9776;</div>  
-    </div>  
-  </header>  
-
-  <main class="account-section">  
-    <div class="account-header">إدارة الحساب</div>  
-    <div class="account-option">  
-      <div class="option-item">  
-        <div class="icon-circle">  
-          <img src="https://i.ibb.co/nS2x140/A825-BDBC-18-A3-4-D5-C-9-E17-6-F994-F30-B307-removebg-preview.png" alt="إيداع" />  
-        </div>  
-        <div class="option-text">إجراء الإيداع</div>  
-        <div class="arrow-icon">›</div>  
-      </div>  
-      <div class="option-item">  
-        <div class="icon-circle">  
-          <img src="https://i.ibb.co/rRDF6BbH/9-FD1-E7-E9-36-EE-4530-AC26-5-B1976634666-removebg-preview.png" alt="سحب" />  
-        </div>  
-        <div class="option-text">السحب من الحساب</div>  
-        <div class="arrow-icon">›</div>  
-      </div>  
-    </div>  
-
-    <!-- ✅ القسم الجديد -->
-    <div style="background-color: #d8ecd3; padding: 20px 10px; margin-top: 20px; border-radius: 12px;">
-      <h3 style="text-align: center; color: #2e7d32; margin-bottom: 20px; font-size: 16px;">الطرق الموصى بها</h3>
-      <div style="display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;">
-        
-        <!-- أيقونة 1 -->
-        <div style="width: 100px; background-color: #9db194; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-          <div style="background-color: white; height: 40px; display: flex; justify-content: center; align-items: center; padding: 2px;">
-            <img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH Bank" style="max-width: 100%; max-height: 25px; object-fit: contain;" />
-          </div>
-          <div style="background-color: #3e723a; color: white; text-align: center; padding: 8px 0; font-size: 13px;">CIH</div>
-        </div>
-
-        <!-- أيقونة 2 -->
-        <div style="width: 100px; background-color: #9db194; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-          <div style="background-color: white; height: 40px; display: flex; justify-content: center; align-items: center; padding: 2px;">
-            <img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH Bank" style="max-width: 100%; max-height: 25px; object-fit: contain;" />
-          </div>
-          <div style="background-color: #3e723a; color: white; text-align: center; padding: 8px 0; font-size: 13px;">CIH</div>
-        </div>
-
-        <!-- أيقونة 3 -->
-        <div style="width: 100px; background-color: #9db194; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); border-radius: 10px; overflow: hidden;">
-          <div style="background-color: white; height: 40px; display: flex; justify-content: center; align-items: center; padding: 2px;">
-            <img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH Bank" style="max-width: 100%; max-height: 25px; object-fit: contain;" />
-          </div>
-          <div style="background-color: #3e723a; color: white; text-align: center; padding: 8px 0; font-size: 13px;">CIH</div>
-        </div>
-
+          <button type="submit">تأكيد التحويل</button>
+        </form>
       </div>
     </div>
+  </div>
 
-  </main>  
+  <script>
+    const openBtn  = document.getElementById('openModal');
+    const closeBtn = document.getElementById('closeModal');
+    const overlay  = document.getElementById('overlay');
 
-  <script>  
-    const userId = localStorage.getItem("userId") || "غير مسجل";  
-    document.getElementById("userIdDisplay").textContent = "id: " + userId;  
-  </script>  
+    /* فتح المودال */
+    openBtn.addEventListener('click', () => overlay.style.display = 'flex');
 
-</body>  
+    /* إغلاق المودال بالزر أو بالنقر خارج المحتوى */
+    closeBtn.addEventListener('click', () => overlay.style.display = 'none');
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) overlay.style.display = 'none';
+    });
+  </script>
+</body>
 </html>
