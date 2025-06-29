@@ -68,6 +68,19 @@
       background: #eeeeee;
       width: 100%;
       height: 400px;
+      position: relative;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .notice {
+      background-color: #2f5d30; /* اللون الأخضر الداكن */
+      color: white;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 15px;
     }
   </style>
 </head>
@@ -78,7 +91,11 @@
         <img src="https://i.postimg.cc/zBxrCBvP/cash-plus-mobcash.png" alt="Cash Plus Logo" />
         <button class="close-btn" onclick="window.location.href='home.html'">&times;</button>
       </div>
-      <div class="gray-square"></div>
+      <div class="gray-square">
+        <div class="notice">
+          Avant de faire une demande, veuillez transférer des fonds dans les 10 minutes en utilisant les informations de paiement indiquées ci-dessous.
+        </div>
+      </div>
     </div>
   </div>
 </body>
