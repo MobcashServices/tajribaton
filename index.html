@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع نسخ المعلومات</title>
+  <title>معلومات الدفع</title>
   <style>
     body {
       margin: 0;
@@ -12,92 +12,46 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-      padding: 10px;
-      box-sizing: border-box;
-    }
-
-    .wrapper {
-      display: flex;
-      align-items: flex-start;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      direction: rtl;
     }
 
     .container {
-      width: 400px;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+      background-color: #ffffff;
+      width: 380px;
       border-radius: 6px;
       overflow: hidden;
-      background-color: #fff;
-      position: relative;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
     }
 
-    .header {
-      background: #ffffff;
-      height: 80px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .header img {
-      width: 120px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .close-btn {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 28px;
-      color: #999;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      transition: color 0.2s ease;
-    }
-
-    .close-btn:hover {
-      color: #000;
-    }
-
-    .gray-square {
-      background: #eeeeee;
-      width: 100%;
-      height: auto;
-      position: relative;
-      padding: 10px 12px;
-      box-sizing: border-box;
+    .gray-box {
+      background-color: #eeeeee;
+      padding: 12px;
     }
 
     .notice {
       background-color: #2f5d30;
       color: white;
-      padding: 6px 10px;
       border-radius: 8px;
+      padding: 6px 10px;
       font-size: 13px;
-      line-height: 1.4;
       margin-bottom: 12px;
-      text-align: right;
-      direction: rtl;
+      line-height: 1.5;
     }
 
-    .info-block {
+    .info-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 14px;
       margin: 6px 0;
-      color: #1c1c1c;
+      font-size: 14px;
+      color: #1e355d; /* أزرق مشابه للصورة */
     }
 
-    .info-text {
+    .info-label {
       flex: 1;
-      text-align: right;
-      padding-left: 8px;
+      padding-left: 6px;
+      font-weight: normal;
     }
 
     .copy-btn {
@@ -105,47 +59,42 @@
       border: none;
       cursor: pointer;
       padding: 0;
+      margin-left: 4px;
     }
 
-    .copy-icon {
-      width: 18px;
-      height: 18px;
+    .copy-btn img {
+      width: 16px;
+      height: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
-    <div class="container">
-      <div class="header">
-        <img src="https://i.postimg.cc/zBxrCBvP/cash-plus-mobcash.png" alt="Cash Plus Logo" />
-        <button class="close-btn" onclick="window.location.href='home.html'">&times;</button>
+  <div class="container">
+    <div class="gray-box">
+      <div class="notice">
+        قبل التقديم، يرجى تحويل الأموال خلال <strong>10 دقائق</strong><br>
+        باستخدام معلومات الدفع المدرجة أدناه.
       </div>
-      <div class="gray-square">
-        <div class="notice">
-          قبل التقديم، يرجى تحويل الأموال خلال <strong>10 دقائق</strong><br>
-          باستخدام معلومات الدفع المدرجة أدناه.
-        </div>
 
-        <div class="info-block">
-          <span class="info-text">رقم الهاتف 0681700097</span>
-          <button class="copy-btn" onclick="copyToClipboard('0681700097')">
-            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
-          </button>
-        </div>
+      <div class="info-row">
+        <span class="info-label">رقم الهاتف 0681700097</span>
+        <button class="copy-btn" onclick="copyToClipboard('0681700097')">
+          <img src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ">
+        </button>
+      </div>
 
-        <div class="info-block">
-          <span class="info-text">السبب SRV</span>
-          <button class="copy-btn" onclick="copyToClipboard('SRV')">
-            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
-          </button>
-        </div>
+      <div class="info-row">
+        <span class="info-label">السبب SRV</span>
+        <button class="copy-btn" onclick="copyToClipboard('SRV')">
+          <img src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ">
+        </button>
+      </div>
 
-        <div class="info-block">
-          <span class="info-text">اسم الحساب Hind</span>
-          <button class="copy-btn" onclick="copyToClipboard('Hind')">
-            <img class="copy-icon" src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ" />
-          </button>
-        </div>
+      <div class="info-row">
+        <span class="info-label">اسم الحساب Hind</span>
+        <button class="copy-btn" onclick="copyToClipboard('Hind')">
+          <img src="https://i.postimg.cc/MGFH60NK/Screenshot-20250629-201333-1.jpg" alt="نسخ">
+        </button>
       </div>
     </div>
   </div>
@@ -153,9 +102,9 @@
   <script>
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(function () {
-        alert("تم النسخ: " + text);
+        alert("تم نسخ: " + text);
       }, function () {
-        alert("حدث خطأ أثناء النسخ");
+        alert("حدث خطأ في النسخ");
       });
     }
   </script>
