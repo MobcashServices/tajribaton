@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع صورة في الجزء الأبيض</title>
+  <title>نموذج مع جزء أبيض مستطيل وصورة ثابتة</title>
   <style>
     body {
       margin: 0;
@@ -37,7 +37,7 @@
 
     .white-rect {
       background: #ffffff;
-      flex: 0 0 35%;
+      height: 140px; /* ارتفاع ثابت للمستطيل الأبيض */
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
       display: flex;
@@ -45,11 +45,12 @@
       align-items: center;
       padding: 10px;
       box-sizing: border-box;
+      flex-shrink: 0; /* منع الانكماش */
     }
 
     .white-rect img {
-      max-width: 90%;
-      height: auto;
+      width: 120px; /* عرض ثابت */
+      height: auto; /* ارتفاع متناسب */
       object-fit: contain;
     }
 
