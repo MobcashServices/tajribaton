@@ -2,182 +2,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>اسم الموقع</title>
+  <title>هيكل فارغ</title>
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f0f0f0;
       display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }header {
-  background-color: #004d7a;
-  color: white;
-  padding: 20px;
-  text-align: center;
-}
-
-nav {
-  background-color: #006699;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 10px;
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-main {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-/* الصندوق المنقسم (أبيض + رمادي) */
-.split-box {
-  width: 90%;
-  max-width: 600px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }.container {
+  width: 300px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow: hidden; /* حتى يختفي أي بروز للزوايا */
+  overflow: hidden;
 }
 
-.split-box .top-rect {
+.white-rect {
   background-color: #ffffff;
-  padding: 40px 30px;
+  height: 150px;
 }
 
-.split-box .bottom-square {
+.gray-square {
   background-color: #d9d9d9;
-  padding: 40px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* مربع متساوي الأبعاد */
   aspect-ratio: 1 / 1;
 }
 
-footer {
-  background-color: #004d7a;
-  color: white;
-  text-align: center;
-  padding: 15px;
-}
-
-  </style>
-</head>
-<body>  <header>
-    <h1>مرحبا بك في موقعنا</h1>
-  </header>  <nav>
-    <a href="#">الرئيسية</a>
-    <a href="#">من نحن</a>
-    <a href="#">الخدمات</a>
-    <a href="#">اتصل بنا</a>
-  </nav>  <main>
-    <div class="split-box">
-      <div class="top-rect">
-        <h2>عنوان المستطيل الأبيض</h2>
-        <p>يمكنك وضع أي محتوى هنا.</p>
-      </div>
-      <div class="bottom-square">
-        <h2>عنوان المربع الرمادي</h2>
-      </div>
-    </div>
-  </main>  <footer>
-    &copy; 2025 جميع الحقوق محفوظة
-  </footer></body>
-</html><!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>الواجهة الرئيسية – Mobcash</title>
-
-  <!-- خط عربي بسيط -->
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet"/>
-
-  <style>
-    * { box-sizing: border-box; }
-    body { margin:0; font-family:'Almarai',sans-serif; background:#f5f6f7; }
-
-    /* أيقونة تُظهر الهيكل المؤقّت */
-    .bank-icon-wrapper { display:flex; justify-content:center; padding:60px 0; }
-    .bank-icon         { width:130px; cursor:pointer; transition:transform .25s;}
-    .bank-icon:hover   { transform:scale(1.08); }
-
-    /* الهيكل الرمادي المؤقّت */
-    #temporaryOverlay{
-      position:fixed; inset:0;
-      background:rgba(128,128,128,.55);   /* رمادي شفّاف */
-      backdrop-filter:blur(2px);
-      display:none;                       /* مخفيّ افتراضيًا */
-      align-items:center; justify-content:center;
-      z-index:1000;
-    }
-
-    /* الصندوق الرمادي الفاتح */
-    .lightBox{
-      background:#e9e9e9;                 /* رمادي فاتح */
-      border-radius:16px;
-      box-shadow:0 6px 18px rgba(0,0,0,.15);
-      padding:28px 36px;
-      width:min(420px, 90vw);
-      position:relative;
-      text-align:center;
-    }
-    .lightBox h2{margin:0 0 16px;}
-
-    /* زر إغلاق */
-    .close-btn{
-      position:absolute; top:12px; left:12px;
-      font-size:28px; cursor:pointer;
-      background:transparent; border:none;
-    }
-    .close-btn:hover{opacity:.7;}
   </style>
 </head>
 <body>
-
-  <!-- أيقونة الاختبار -->
-  <div class="bank-icon-wrapper">
-    <img src="https://i.postimg.cc/g07jHhK5/cih.png"
-         alt="CIH Bank"
-         id="openOverlay"
-         class="bank-icon">
+  <div class="container">
+    <div class="white-rect"></div>
+    <div class="gray-square"></div>
   </div>
-
-  <!-- الهيكل الرمادي المؤقّت + الصندوق -->
-  <div id="temporaryOverlay">
-    <div class="lightBox">
-      <button class="close-btn" id="closeOverlay">&times;</button>
-      <h2>مربّع رمادي فاتح</h2>
-      <p>هذا صندوق تجريبي باللون الرمادي الفاتح.  
-         اضغط على × أو خارج الصندوق للإغلاق.</p>
-    </div>
-  </div>
-
-  <script>
-    const overlay = document.getElementById('temporaryOverlay');
-    const openBtn = document.getElementById('openOverlay');
-    const closeBtn= document.getElementById('closeOverlay');
-
-    /* إظهار الهيكل الرمادي */
-    openBtn.addEventListener('click', () => overlay.style.display = 'flex');
-
-    /* إغلاق عند الضغط على × */
-    closeBtn.addEventListener('click', () => overlay.style.display = 'none');
-
-    /* إغلاق عند الضغط خارج الصندوق */
-    overlay.addEventListener('click', e=>{
-      if(e.target === overlay) overlay.style.display = 'none';
-    });
-  </script>
 </body>
 </html>
