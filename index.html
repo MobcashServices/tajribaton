@@ -1,49 +1,84 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<!DOCTYPE html><html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج بسيط 4:5</title>
+  <title>نموذج مع زر رجوع</title>
   <style>
     body {
-      margin: 0; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh; 
-      background: #f0f0f0; 
-      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       padding: 10px;
       box-sizing: border-box;
-    }
-    .container {
-      width: 90vw;          /* عرض نسبي للشاشة */
-      max-width: 400px;     /* أقصى عرض */
-      aspect-ratio: 4 / 5;  /* نسبة العرض إلى الطول */
-      display: flex;
-      flex-direction: column;
-      border-radius: 6px;
-      overflow: hidden;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      background: transparent;
-    }
-    .white-rect {
-      background: white;
-      flex: 0 0 35%;         /* 35% من ارتفاع الحاوية */
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-    }
-    .gray-square {
-      background: #d9d9d9;
-      flex: 1;                /* باقي المساحة 65% */
-      border-radius: 0 0 6px 6px; /* نصف انحناء للزوايا السفلية */
-    }
+    }/* غلاف لموضع العنصر والنموذج */
+.wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+/* زر الرجوع (X) */
+.close-btn {
+  position: absolute;
+  top: 12px;            /* أمام رأس النموذج تقريباً */
+  right: -42px;         /* خارج النموذج جهة اليمين */
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 2px solid #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #444;
+  font-size: 20px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.close-btn:hover {
+  background: #f2f2f2;
+}
+
+/* النموذج الأساسي */
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;          /* متجاوب */
+  max-width: 400px;
+  aspect-ratio: 4 / 5;  /* نسبة العرض:الارتفاع */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;   /* حواف شبه حادة */
+  overflow: hidden;
+  background: transparent;
+}
+
+.white-rect {
+  background-color: #ffffff;
+  flex: 0 0 35%;  /* 35% من الارتفاع */
+}
+
+.gray-square {
+  background-color: #d9d9d9;
+  flex: 1;        /* باقي الارتفاع */
+}
+
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="white-rect"></div>
-    <div class="gray-square"></div>
+  <div class="wrapper">
+    <!-- علامة الرجوع -->
+    <a href="home.html" class="close-btn">&times;</a><div class="container">
+  <div class="white-rect"></div>
+  <div class="gray-square"></div>
+</div>
+
   </div>
 </body>
 </html>
