@@ -2,125 +2,86 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>الواجهة الرئيسية – Mobcash</title>
 
-  <!-- الخط الافتراضي -->
+  <!-- خط عربي بسيط -->
   <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&display=swap" rel="stylesheet"/>
 
   <style>
-    /* إعدادات أساسية */
-    *            { box-sizing: border-box; }
-    body         { margin: 0; font-family: 'Almarai', sans-serif; background:#f2f4f6; overflow-x:hidden; }
-    h2           { margin-top: 0; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family:'Almarai',sans-serif; background:#f5f6f7; }
 
-    /* أيقونة البنك */
-    .bank-icon-wrapper  { display:flex; justify-content:center; padding:40px 0; }
-    .bank-icon          { width:120px; cursor:pointer; transition:transform .25s; }
-    .bank-icon:hover    { transform:scale(1.08); }
+    /* أيقونة تُظهر الهيكل المؤقّت */
+    .bank-icon-wrapper { display:flex; justify-content:center; padding:60px 0; }
+    .bank-icon         { width:130px; cursor:pointer; transition:transform .25s;}
+    .bank-icon:hover   { transform:scale(1.08); }
 
-    /* طبقة التعتيم الرمادية */
-    #overlay     {
+    /* الهيكل الرمادي المؤقّت */
+    #temporaryOverlay{
       position:fixed; inset:0;
-      background:rgba(0,0,0,.45);
-      display:none;            /* مخفي مبدئياً */
-      align-items:center; justify-content:center;
-      z-index:999;
+      background:rgba(128,128,128,.55);   /* رمادي شفّاف */
       backdrop-filter:blur(2px);
+      display:none;                       /* مخفيّ افتراضيًا */
+      align-items:center; justify-content:center;
+      z-index:1000;
     }
 
-    /* إطار المودال (شفّاف) */
-    .modal-frame  {
-      background:transparent;  /* شفاف تماماً */
-      padding:0; border:none;
-      width:min(90vw,480px);
-    }
-
-    /* الحاوية الداخلية ذات خلفيّة شبه شفّافة حتى تبقى الحقول مقروءة */
-    .modal-inner {
-      background:rgba(255,255,255,.75);   /* 25% شفافية */
-      border-radius:18px;
-      box-shadow:0 4px 24px rgba(0,0,0,.2);
-      padding:24px 32px;
-      backdrop-filter:blur(6px);
+    /* الصندوق الرمادي الفاتح */
+    .lightBox{
+      background:#e9e9e9;                 /* رمادي فاتح */
+      border-radius:16px;
+      box-shadow:0 6px 18px rgba(0,0,0,.15);
+      padding:28px 36px;
+      width:min(420px, 90vw);
       position:relative;
+      text-align:center;
     }
+    .lightBox h2{margin:0 0 16px;}
 
-    .close-btn {
-      position:absolute; top:10px; left:10px;
-      font-size:24px; cursor:pointer;
-      border:none; background:transparent; color:#333;
+    /* زر إغلاق */
+    .close-btn{
+      position:absolute; top:12px; left:12px;
+      font-size:28px; cursor:pointer;
+      background:transparent; border:none;
     }
-
-    /* حقول ثلاثيّة الأبعاد بسيطة */
-    .modal-inner input,
-    .modal-inner select {
-      width:100%; padding:10px 12px; margin:8px 0 18px;
-      border:1px solid #ccc;
-      border-radius:6px;
-      background:rgba(255,255,255,.6);
-      box-shadow:inset 2px 2px 4px rgba(255,255,255,.6),
-                 inset -2px -2px 4px rgba(0,0,0,.05);
-      font-size:15px;
-    }
-
-    .modal-inner button[type="submit"] {
-      width:100%; padding:12px; font-size:16px;
-      border:none; border-radius:8px;
-      background:#28a745; color:#fff;
-      cursor:pointer;
-      transition:background .2s;
-      box-shadow:0 3px 6px rgba(0,0,0,.15);
-    }
-    .modal-inner button[type="submit"]:hover { background:#23913d; }
+    .close-btn:hover{opacity:.7;}
   </style>
 </head>
 <body>
 
-  <!-- أيقونة تفتح النموذج -->
+  <!-- أيقونة الاختبار -->
   <div class="bank-icon-wrapper">
     <img src="https://i.postimg.cc/g07jHhK5/cih.png"
          alt="CIH Bank"
-         class="bank-icon"
-         id="openModal">
+         id="openOverlay"
+         class="bank-icon">
   </div>
 
-  <!-- طبقة التعتيم + المودال -->
-  <div id="overlay">
-    <div class="modal-frame">
-      <div class="modal-inner">
-        <button class="close-btn" id="closeModal">&times;</button>
-        <h2>نموذج تحويل بنكي</h2>
-
-        <!-- نموذجك الشفّاف -->
-        <form>
-          <label>اسم صاحب الحساب</label>
-          <input type="text" placeholder="مثال: محمد الأحمدي" required>
-
-          <label>رقم الحساب (IBAN)</label>
-          <input type="text" placeholder="MA64 1234 5678 9012 3456 7890" required>
-
-          <label>المبلغ بالدرهم</label>
-          <input type="number" min="1" step="0.01" placeholder="0.00" required>
-
-          <button type="submit">تأكيد التحويل</button>
-        </form>
-      </div>
+  <!-- الهيكل الرمادي المؤقّت + الصندوق -->
+  <div id="temporaryOverlay">
+    <div class="lightBox">
+      <button class="close-btn" id="closeOverlay">&times;</button>
+      <h2>مربّع رمادي فاتح</h2>
+      <p>هذا صندوق تجريبي باللون الرمادي الفاتح.  
+         اضغط على × أو خارج الصندوق للإغلاق.</p>
     </div>
   </div>
 
   <script>
-    const openBtn  = document.getElementById('openModal');
-    const closeBtn = document.getElementById('closeModal');
-    const overlay  = document.getElementById('overlay');
+    const overlay = document.getElementById('temporaryOverlay');
+    const openBtn = document.getElementById('openOverlay');
+    const closeBtn= document.getElementById('closeOverlay');
 
-    /* فتح المودال */
+    /* إظهار الهيكل الرمادي */
     openBtn.addEventListener('click', () => overlay.style.display = 'flex');
 
-    /* إغلاق المودال بالزر أو بالنقر خارج المحتوى */
+    /* إغلاق عند الضغط على × */
     closeBtn.addEventListener('click', () => overlay.style.display = 'none');
-    overlay.addEventListener('click', e => {
-      if (e.target === overlay) overlay.style.display = 'none';
+
+    /* إغلاق عند الضغط خارج الصندوق */
+    overlay.addEventListener('click', e=>{
+      if(e.target === overlay) overlay.style.display = 'none';
     });
   </script>
 </body>
