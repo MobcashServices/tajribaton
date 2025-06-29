@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>هيكل فارغ</title>
+  <title>نموذج مع مساحة بيضاء صغيرة ومربع رمادي</title>
   <style>
     body {
       margin: 0;
@@ -18,21 +18,25 @@
     .container {
       display: flex;
       flex-direction: column;
-      width: 500px;   /* العرض الكبير */
-      height: 600px;  /* الطول الكبير */
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+      width: 550px;
+      height: 650px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       border-radius: 16px;
       overflow: hidden;
+      background: transparent;
     }
 
     .white-rect {
       background-color: #ffffff;
-      flex: 1;
+      height: 35%; /* 35% من ارتفاع الحاوية */
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
     }
 
     .gray-square {
       background-color: #d9d9d9;
-      flex: 1;
+      height: 65%; /* 65% من ارتفاع الحاوية */
+      border-radius: 0; /* زوايا حادة */
     }
   </style>
 </head>
