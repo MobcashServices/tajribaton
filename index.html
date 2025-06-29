@@ -3,38 +3,52 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج مع زر رجوع أعلى اليمين</title>
+  <title>نموذج مع زر رجوع خارجي بجانب الرأس</title>
   <style>
     body {
       margin: 0;
       background-color: #f0f0f0;
       display: flex;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      align-items: center;
+      height: 100vh;
       font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      position: relative;
       padding: 10px;
       box-sizing: border-box;
     }
 
     .container {
-      position: relative;
-      display: flex;
-      flex-direction: column;
       width: 90%;
       max-width: 400px;
       aspect-ratio: 4 / 5;
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.12);
       border-radius: 6px;
       overflow: hidden;
       background: transparent;
+      position: relative;
+      z-index: 1;
     }
 
-    /* زر الرجوع داخل النموذج أعلى اليمين */
+    .white-rect {
+      background: #ffffff;
+      flex: 0 0 35%;
+      border-top-left-radius: 6px;
+      border-top-right-radius: 6px;
+    }
+
+    .gray-square {
+      background: #d9d9d9;
+      flex: 1;
+    }
+
+    /* زر الرجوع خارج النموذج على يمين رأسه */
     .close-btn {
       position: absolute;
       top: 10px;
-      right: 10px;
+      right: calc(50% - 200px - 40px); /* 50% هو مركز الجسم - نصف عرض الحاوية(400/2=200) - 40px مسافة للزر */
       font-size: 28px;
       color: #666;
       text-decoration: none;
@@ -49,27 +63,15 @@
     .close-btn:hover {
       color: #000;
     }
-
-    .white-rect {
-      background: #ffffff;
-      flex: 0 0 35%;
-      border-top-left-radius: 6px;
-      border-top-right-radius: 6px;
-    }
-
-    .gray-square {
-      background: #d9d9d9;
-      flex: 1;
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- زر الرجوع أعلى اليمين داخل النموذج -->
-    <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
-
     <div class="white-rect"></div>
     <div class="gray-square"></div>
   </div>
+
+  <!-- زر الرجوع خارج النموذج على يمين رأسه -->
+  <a href="home.html" class="close-btn" title="العودة إلى الصفحة الرئيسية">&times;</a>
 </body>
 </html>
