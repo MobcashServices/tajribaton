@@ -3,43 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>نموذج متجاوب</title>
+  <title>نموذج بسيط 4:5</title>
   <style>
     body {
-      margin: 0;
-      background-color: #f0f0f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      height: 100vh; 
+      background: #f0f0f0; 
+      font-family: Arial, sans-serif;
       padding: 10px;
       box-sizing: border-box;
     }
-
     .container {
+      width: 90vw;          /* عرض نسبي للشاشة */
+      max-width: 400px;     /* أقصى عرض */
+      aspect-ratio: 4 / 5;  /* نسبة العرض إلى الطول */
       display: flex;
       flex-direction: column;
-      width: 90%;
-      max-width: 480px;
-      aspect-ratio: 4 / 5; /* نسبة العرض إلى الارتفاع */
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
       border-radius: 6px;
       overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       background: transparent;
     }
-
     .white-rect {
-      background-color: #ffffff;
-      flex: 0 0 35%;
+      background: white;
+      flex: 0 0 35%;         /* 35% من ارتفاع الحاوية */
       border-top-left-radius: 6px;
       border-top-right-radius: 6px;
     }
-
     .gray-square {
-      background-color: #d9d9d9;
-      flex: 1;
-      border-radius: 2px;
+      background: #d9d9d9;
+      flex: 1;                /* باقي المساحة 65% */
+      border-radius: 0 0 6px 6px; /* نصف انحناء للزوايا السفلية */
     }
   </style>
 </head>
