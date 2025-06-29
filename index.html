@@ -22,7 +22,6 @@
       border-radius: 12px;
       box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
       overflow: hidden;
-      padding: 0;
     }
 
     .header {
@@ -36,7 +35,6 @@
     .header img {
       width: 120px;
       height: auto;
-      object-fit: contain;
     }
 
     .content {
@@ -55,24 +53,32 @@
     }
 
     .info-line {
-      background-color: transparent;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: #163a61;
+      direction: rtl;
       font-size: 14px;
-      margin-bottom: 12px;
+      color: #1d3653;
+      font-weight: 500;
+      margin-bottom: 10px;
     }
 
-    .info-line span {
+    .info-text {
+      flex-grow: 1;
       white-space: nowrap;
     }
 
-    .copy-icon {
-      width: 20px;
-      height: 20px;
+    .copy-btn {
+      background: none;
+      border: none;
       cursor: pointer;
-      margin-right: 8px;
+      padding: 0;
+      margin-left: 8px;
+    }
+
+    .copy-btn img {
+      width: 18px;
+      height: 18px;
     }
   </style>
 </head>
@@ -88,18 +94,24 @@
       </div>
 
       <div class="info-line">
-        <span>رقم الهاتف 0681700097</span>
-        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('0681700097')">
+        <span class="info-text">رقم الهاتف 0681700097</span>
+        <button class="copy-btn" onclick="copyText('0681700097')">
+          <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+        </button>
       </div>
 
       <div class="info-line">
-        <span>السبب التحويل SRV</span>
-        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('SRV')">
+        <span class="info-text">السبب التحويل SRV</span>
+        <button class="copy-btn" onclick="copyText('SRV')">
+          <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+        </button>
       </div>
 
       <div class="info-line">
-        <span>إسم الحساب Hind</span>
-        <img class="copy-icon" src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ" onclick="copyText('Hind')">
+        <span class="info-text">إسم الحساب Hind</span>
+        <button class="copy-btn" onclick="copyText('Hind')">
+          <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+        </button>
       </div>
     </div>
   </div>
