@@ -67,8 +67,7 @@
     .gray-square {
       background: #eeeeee;
       width: 100%;
-      height: auto;
-      position: relative;
+      min-height: 400px;
       padding: 10px;
       box-sizing: border-box;
     }
@@ -82,34 +81,34 @@
       line-height: 1.4;
       margin-bottom: 10px;
       text-align: right;
-      direction: rtl;
-      white-space: normal;
     }
 
     .info-line {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 6px 0;
+      background: transparent;
+      padding: 6px 0;
       font-size: 14px;
-      color: #1f2d3d;
+      color: #183153; /* الأزرق الغامق كما في الصورة */
+      border-bottom: 1px solid #dcdcdc;
     }
 
-    .info-line .label {
-      font-weight: bold;
+    .info-line span {
+      flex-grow: 1;
     }
 
-    .copy-icon {
+    .copy-btn {
+      background: none;
+      border: none;
       cursor: pointer;
-      margin-right: 6px;
-      color: #7cae3f;
-      font-size: 18px;
+      padding: 0;
+      margin-right: 8px;
     }
 
-    .value {
-      direction: ltr;
-      font-family: monospace;
-      margin-left: 5px;
+    .copy-btn img {
+      width: 18px;
+      height: 18px;
     }
   </style>
 </head>
@@ -126,22 +125,26 @@
           باستخدام معلومات الدفع المدرجة أدناه.
         </div>
 
+        <!-- معلومات التحويل -->
         <div class="info-line">
-          <span class="label">رقم الهاتف</span>
-          <span class="value" id="phone">0681700097</span>
-          <span class="copy-icon" onclick="copyText('phone')">📋</span>
+          <span>رقم الهاتف 0681700097</span>
+          <button class="copy-btn" onclick="copyToClipboard('0681700097')">
+            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+          </button>
         </div>
 
         <div class="info-line">
-          <span class="label">السبب التحويل</span>
-          <span class="value" id="reason">SRV</span>
-          <span class="copy-icon" onclick="copyText('reason')">📋</span>
+          <span>السبب التحويل SRV</span>
+          <button class="copy-btn" onclick="copyToClipboard('SRV')">
+            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+          </button>
         </div>
 
         <div class="info-line">
-          <span class="label">إسم الحساب</span>
-          <span class="value" id="name">Hind</span>
-          <span class="copy-icon" onclick="copyText('name')">📋</span>
+          <span>إسم الحساب Hind</span>
+          <button class="copy-btn" onclick="copyToClipboard('Hind')">
+            <img src="https://i.postimg.cc/9Mf5wYV9/copy-icon.png" alt="نسخ">
+          </button>
         </div>
 
       </div>
@@ -149,8 +152,7 @@
   </div>
 
   <script>
-    function copyText(id) {
-      const text = document.getElementById(id).innerText;
+    function copyToClipboard(text) {
       navigator.clipboard.writeText(text).then(() => {
         alert('تم النسخ: ' + text);
       });
