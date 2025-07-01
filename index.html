@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>نموذج تحويل الأموال</title>
 <style>
-  /* نفس التنسيقات السابقة */
   * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -227,7 +226,7 @@
     </div>
 
     <div class="info-block">
-      <div class="info-label">:رقم الهاتف</div>
+      <div class="info-label">:اسمك الكامل</div>
       <div class="info-input">
         <input type="text" name="sender_name" required>
       </div>
@@ -271,9 +270,7 @@
 
     const form = e.target;
     const amount = form.amount.value;
-    // حذفنا fullname لأنه لم يعد موجود
-    // const fullname = form.sender_iban.value;
-    const phone = form.sender_name.value;
+    const fullname = form.sender_name.value;
     const file = document.getElementById("proof").files[0];
 
     if (!file) {
@@ -290,8 +287,7 @@
           method: "POST",
           body: new URLSearchParams({
             amount,
-            // fullname غير موجود
-            phone,
+            fullname,
             imageBase64: base64Image
           })
         });
