@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>نموذج تحويل الأموال</title>
 <style>
-  /* نفس التنسيقات السابقة */
+  /* التنسيقات كما هي */
   * {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
@@ -346,7 +346,7 @@
       formData.append('fullname', fullname);
       formData.append('proof', compressedBlob, file.name);
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycbwXRalZheB_UIqFypU-D3iOeXHfEMEEvcvptTgmxHZEkir-3JanhBZnOHs5zK_ryaqe/exec", {
+      const response = await fetch("https://script.google.com/macros/s/AKfycbyJOWGg5nJO9INNx9XA38rG9nlxh1TOZISCf9jOrgr2ca8gwGuZxWC8ghvfUdbdb1k1/exec", {
         method: "POST",
         body: formData
       });
