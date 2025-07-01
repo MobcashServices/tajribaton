@@ -20,26 +20,27 @@
       margin: 60px auto;
       background-color: #fff;
       border-radius: 14px;
-      overflow: hidden;
+      overflow: visible; /* مهم للسماح للعلامة بالخروج */
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
+    /* علامة × خارج النموذج بسيطة بدون دائرة */
     .exit-button {
       position: absolute;
-      top: -12px;
-      right: -12px;
-      font-size: 20px;
-      text-decoration: none;
+      top: 20px;       /* على نفس مستوى رأس النموذج */
+      right: -28px;    /* خارج النموذج بمسافة صغيرة */
+      font-size: 28px;
       color: #888;
-      background-color: #eee;
-      border-radius: 50%;
-      width: 32px;
-      height: 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      text-decoration: none;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
       z-index: 10;
+    }
+
+    .exit-button:hover {
+      color: #555; /* تغيير بسيط عند المرور بالفأرة */
     }
 
     .logo-box {
@@ -174,7 +175,7 @@
 <body>
 
 <div class="main-box">
-  <a href="home.html" class="exit-button" title="رجوع">×</a>
+  <a href="home.html" class="exit-button" title="إغلاق">×</a>
 
   <div class="logo-box">
     <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="albarid-linebet">
