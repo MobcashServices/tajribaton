@@ -20,7 +20,7 @@
       width: 90%;
       max-width: 400px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      overflow: visible; /* لكي يظهر زر الرجوع خارجه */
+      overflow: visible;
       position: relative;
     }
     .modal-header {
@@ -45,42 +45,17 @@
       color: #333;
       position: relative;
     }
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: -28px;
-      font-size: 28px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: #888;
-      font-weight: bold;
-      user-select: none;
-      transition: color 0.3s ease;
-      z-index: 10;
-    }
-    .close-btn:hover {
-      color: #555;
-    }
-    /* زر الرجوع الجديد */
+    /* زر الرجوع داخل الجزء الأبيض */
     .back-button {
-      position: absolute;
-      top: 50%;
-      left: 100%; /* خارج الصندوق */
-      transform: translate(20%, -50%);
       cursor: pointer;
       color: #888;
       font-weight: bold;
       user-select: none;
       font-size: 28px;
       line-height: 1;
-      transition: color 0.3s ease;
-      width: 30px;
-      height: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       text-decoration: none;
+      display: inline-block;
+      margin-bottom: 10px;
     }
     .back-button:hover {
       color: #555;
@@ -89,16 +64,15 @@
 </head>
 <body>
   <div class="modal">
-    <button class="close-btn" onclick="window.close()" title="إغلاق">×</button>
     <div class="modal-header">
       <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="AL BARID BANK Logo" />
     </div>
     <div class="modal-body">
-      تم إنشاء طلب الإيداع بنجاح.
       <!-- زر الرجوع -->
       <a href="home.html" class="back-button" title="العودة للرئيسية" aria-label="عودة">
         ×
       </a>
+      <div>تم إنشاء طلب الإيداع بنجاح.</div>
     </div>
   </div>
 
