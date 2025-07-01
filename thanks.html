@@ -20,8 +20,9 @@
       width: 90%;
       max-width: 400px;
       box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      overflow: visible;
+      overflow: visible; /* مهم ليظهر الزر خارجه */
       position: relative;
+      padding-top: 40px; /* زيادة مساحة في الأعلى */
     }
     .modal-header {
       padding: 20px;
@@ -45,34 +46,46 @@
       color: #333;
       position: relative;
     }
-    /* زر الرجوع داخل الجزء الأبيض */
+    /* زر الرجوع خارج النمودج */
     .back-button {
+      position: absolute;
+      top: 10px;
+      right: -40px; /* خارج النمودج بمسافة 40px */
       cursor: pointer;
       color: #888;
       font-weight: bold;
       user-select: none;
-      font-size: 28px;
+      font-size: 32px;
       line-height: 1;
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 10px;
+      transition: color 0.3s ease;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: rgba(255 255 255 / 0.7);
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
     }
     .back-button:hover {
       color: #555;
+      background: rgba(255 255 255 / 1);
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
   <div class="modal">
+    <!-- زر الرجوع خارج الصندوق -->
+    <a href="home.html" class="back-button" title="العودة للرئيسية" aria-label="عودة">
+      ×
+    </a>
     <div class="modal-header">
       <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="AL BARID BANK Logo" />
     </div>
     <div class="modal-body">
-      <!-- زر الرجوع -->
-      <a href="home.html" class="back-button" title="العودة للرئيسية" aria-label="عودة">
-        ×
-      </a>
-      <div>تم إنشاء طلب الإيداع بنجاح.</div>
+      تم إنشاء طلب الإيداع بنجاح.
     </div>
   </div>
 
