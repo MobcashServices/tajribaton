@@ -49,7 +49,7 @@
 
   .logo-box img {
     height: 40px;
-    transition: transform 0.3s ease;
+    transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     transform-style: preserve-3d;
     display: inline-block;
@@ -60,6 +60,7 @@
     transform: translateZ(-40px);
   }
 
+  /* باقي التنسيقات كما في السابق */
   .alert {
     background-color: #1c4729;
     color: #fff;
@@ -328,7 +329,7 @@
     }
   });
 
-  // تفاعل حركة للخلف والأمام للصورة
+  // حركة للخلف والأمام للصورة مع سرعة وسلاسة أعلى
   const logoImg = document.querySelector('.logo-box img');
 
   logoImg.addEventListener('mousedown', () => {
