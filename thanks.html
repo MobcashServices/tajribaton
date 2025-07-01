@@ -1,71 +1,103 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>تم الإرسال بنجاح</title>
-  <style>
-    body {
-      margin: 0;
-      background: rgba(0, 0, 0, 0.3);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-    }
-    .modal {
-      background: #fff;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      position: relative;
-    }
-    .modal-header {
-      padding: 20px;
-      text-align: center;
-      background: #fff;
-    }
-    .modal-header img {
-      max-height: 60px;
-    }
-    .modal-body {
-      background: #eeeeee;
-      padding: 15px;
-      text-align: center;
-      font-size: 17px;
-      color: #333;
-    }
-    .close-btn {
-      position: absolute;
-      top: 20px;
-      right: -28px;
-      font-size: 28px;
-      border: none;
-      background: none;
-      cursor: pointer;
-      color: #888;
-      font-weight: bold;
-      user-select: none;
-      transition: color 0.3s ease;
-      z-index: 10;
-    }
-    .close-btn:hover {
-      color: #555;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>تم الإرسال بنجاح</title>
+<style>
+  body {
+    margin: 0;
+    background: rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+  .modal {
+    position: relative;
+    background: #fff;
+    border-radius: 14px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  /* زر الإغلاق مثل النموذج الثاني */
+  .exit-button {
+    position: absolute;
+    top: 20px;
+    right: -28px;
+    font-size: 28px;
+    color: #888;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+    transition: color 0.3s ease;
+    z-index: 10;
+  }
+  .exit-button:hover {
+    color: #555;
+  }
+  .modal-header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  .modal-header img {
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    transform-style: preserve-3d;
+  }
+  .modal-header img.active,
+  .modal-header img:hover {
+    transform: translateZ(-40px);
+  }
+  .modal-body {
+    background: #eeeeee;
+    padding: 15px;
+    text-align: center;
+    font-size: 17px;
+    color: #333;
+    border-radius: 6px;
+  }
+</style>
 </head>
 <body>
   <div class="modal">
-    <button class="close-btn" onclick="window.close()" title="إغلاق">×</button>
+    <button class="exit-button" title="إغلاق" onclick="window.close()">×</button>
+
     <div class="modal-header">
       <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="AL BARID BANK Logo" />
     </div>
+
     <div class="modal-body">
       تم إنشاء طلب الإيداع بنجاح.
     </div>
   </div>
+
+<script>
+  const logoImg = document.querySelector('.modal-header img');
+
+  logoImg.addEventListener('mousedown', () => {
+    logoImg.classList.add('active');
+  });
+  logoImg.addEventListener('mouseup', () => {
+    logoImg.classList.remove('active');
+  });
+  logoImg.addEventListener('mouseleave', () => {
+    logoImg.classList.remove('active');
+  });
+
+  logoImg.addEventListener('touchstart', () => {
+    logoImg.classList.add('active');
+  });
+  logoImg.addEventListener('touchend', () => {
+    logoImg.classList.remove('active');
+  });
+</script>
 </body>
 </html>
