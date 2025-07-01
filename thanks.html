@@ -24,28 +24,19 @@
       position: relative;
     }
     .modal-header {
-      background: #eeeeee;
       padding: 20px;
       text-align: center;
+      background: #fff;
     }
     .modal-header img {
       max-height: 60px;
       height: 40px;
-      display: inline-block;
-      /* حركة التأرجح */
-      animation: swing 3s ease-in-out infinite;
-      transform-style: preserve-3d;
       cursor: pointer;
+      display: inline-block;
       transition: transform 0.3s ease;
+      transform-style: preserve-3d;
     }
-    @keyframes swing {
-      0%, 100% {
-        transform: translateZ(0);
-      }
-      50% {
-        transform: translateZ(-40px);
-      }
-    }
+    /* لا حاجة لفئة active الآن */
     .modal-body {
       background: #eeeeee;
       padding: 15px;
@@ -86,22 +77,20 @@
   <script>
     const logoImg = document.querySelector('.modal-header img');
 
-    logoImg.addEventListener('mousedown', () => {
-      logoImg.classList.add('active');
-    });
-    logoImg.addEventListener('mouseup', () => {
-      logoImg.classList.remove('active');
-    });
-    logoImg.addEventListener('mouseleave', () => {
-      logoImg.classList.remove('active');
-    });
+    function animateBackAndForth() {
+      // تحرك للخلف (ابتعاد) على محور Z بمقدار -60px ثم يرجع
+      logoImg.style.transition = 'transform 0.4s ease';
+      logoImg.style.transform = 'translateZ(-60px)';
+      
+      // بعد 400ms يرجع للوضع الطبيعي
+      setTimeout(() => {
+        logoImg.style.transform = 'translateZ(0)';
+      }, 400);
+    }
 
-    logoImg.addEventListener('touchstart', () => {
-      logoImg.classList.add('active');
-    });
-    logoImg.addEventListener('touchend', () => {
-      logoImg.classList.remove('active');
-    });
+    // حدث اللمس أو الضغط
+    logoImg.addEventListener('mousedown', animateBackAndForth);
+    logoImg.addEventListener('touchstart', animateBackAndForth);
   </script>
 </body>
 </html>
