@@ -27,16 +27,16 @@
       padding: 20px;
       text-align: center;
       background: #fff;
+      perspective: 800px; /* هنا أضفنا */
     }
     .modal-header img {
       max-height: 60px;
       height: 40px;
       cursor: pointer;
       display: inline-block;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease;
       transform-style: preserve-3d;
     }
-    /* لا حاجة لفئة active الآن */
     .modal-body {
       background: #eeeeee;
       padding: 15px;
@@ -78,17 +78,14 @@
     const logoImg = document.querySelector('.modal-header img');
 
     function animateBackAndForth() {
-      // تحرك للخلف (ابتعاد) على محور Z بمقدار -60px ثم يرجع
       logoImg.style.transition = 'transform 0.4s ease';
-      logoImg.style.transform = 'translateZ(-60px)';
+      logoImg.style.transform = 'translateZ(-60px) scale(0.9)';
       
-      // بعد 400ms يرجع للوضع الطبيعي
       setTimeout(() => {
-        logoImg.style.transform = 'translateZ(0)';
+        logoImg.style.transform = 'translateZ(0) scale(1)';
       }, 400);
     }
 
-    // حدث اللمس أو الضغط
     logoImg.addEventListener('mousedown', animateBackAndForth);
     logoImg.addEventListener('touchstart', animateBackAndForth);
   </script>
