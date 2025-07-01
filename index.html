@@ -14,26 +14,34 @@
       background-color: #d9e3db;
     }
 
-    .exit-button {
-      display: inline-block;
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 28px;
-      text-decoration: none;
-      color: #888;
-      z-index: 999;
-    }
-
     .main-box {
       position: relative;
       max-width: 420px;
-      margin: 30px auto;
+      margin: 60px auto;
       background-color: #fff;
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
+
+    .exit-button {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      font-size: 20px;
+      text-decoration: none;
+      color: #888;
+      background-color: #eee;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      z-index: 10;
+    }
+
     .logo-box {
       text-align: center;
       padding: 20px 10px 10px;
@@ -165,9 +173,9 @@
 </head>
 <body>
 
-<a href="home.html" class="exit-button" title="إغلاق">×</a>
-
 <div class="main-box">
+  <a href="home.html" class="exit-button" title="رجوع">×</a>
+
   <div class="logo-box">
     <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="albarid-linebet">
   </div>
