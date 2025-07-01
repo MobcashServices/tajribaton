@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>تم الإرسال بنجاح</title>
   <style>
     body {
       margin: 0;
-      background: rgba(0, 0, 0, 0.3); /* خلفية رمادية شفافة */
+      background: rgba(0, 0, 0, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -40,24 +40,28 @@
     }
     .close-btn {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 22px;
+      top: 20px;
+      right: -28px;
+      font-size: 28px;
       border: none;
       background: none;
       cursor: pointer;
       color: #888;
+      font-weight: bold;
+      user-select: none;
+      transition: color 0.3s ease;
+      z-index: 10;
     }
     .close-btn:hover {
-      color: #000;
+      color: #555;
     }
   </style>
 </head>
 <body>
   <div class="modal">
-    <button class="close-btn" onclick="window.close()">×</button>
+    <button class="close-btn" onclick="window.close()" title="إغلاق">×</button>
     <div class="modal-header">
-      <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="AL BARID BANK Logo">
+      <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="AL BARID BANK Logo" />
     </div>
     <div class="modal-body">
       تم إنشاء طلب الإيداع بنجاح.
