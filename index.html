@@ -13,20 +13,26 @@
       margin: 0;
       background-color: #d9e3db;
     }
-    .back-button {
-      display: inline-block;
-      margin: 20px;
-      text-decoration: none;
+
+    .close-button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      font-size: 24px;
       color: #1c4729;
-      font-size: 18px;
+      text-decoration: none;
       font-weight: bold;
+      z-index: 10;
     }
-    .back-button:hover {
-      text-decoration: underline;
+
+    .close-button:hover {
+      color: #ff0000;
     }
+
     .main-box {
+      position: relative;
       max-width: 420px;
-      margin: 10px auto 30px;
+      margin: 30px auto;
       background-color: #fff;
       border-radius: 14px;
       overflow: hidden;
@@ -163,11 +169,9 @@
 </head>
 <body>
 
-<a href="home.html" class="back-button" title="الرجوع">
-  &#8592; الرجوع
-</a>
-
 <div class="main-box">
+  <a href="home.html" class="close-button" title="إغلاق">×</a>
+
   <div class="logo-box">
     <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="albarid-linebet">
   </div>
