@@ -20,15 +20,15 @@
       margin: 60px auto;
       background-color: #fff;
       border-radius: 14px;
-      overflow: visible; /* للسماح للعلامة والخارجية بالظهور */
+      overflow: visible; /* للسماح للزر بالخروج */
       box-shadow: 0 0 10px rgba(0,0,0,0.2);
     }
 
-    /* علامة × خارج النموذج بسيطة بدون دائرة */
+    /* علامة × خارج النموذج */
     .exit-button {
       position: absolute;
-      top: 20px;
-      right: -28px;
+      top: 20px;       
+      right: -28px;    
       font-size: 28px;
       color: #888;
       text-decoration: none;
@@ -38,7 +38,6 @@
       transition: color 0.3s ease;
       z-index: 10;
     }
-
     .exit-button:hover {
       color: #555;
     }
@@ -47,9 +46,19 @@
       text-align: center;
       padding: 20px 10px 10px;
     }
+    /* حركة تفاعلية على صورة البنك */
     .logo-box img {
       height: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      display: inline-block;
     }
+    .logo-box img.active,
+    .logo-box img:hover {
+      transform: scale(1.1) translateZ(10px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
     .alert {
       background-color: #1c4729;
       color: #fff;
@@ -145,16 +154,6 @@
       object-fit: cover;
       border: 1px solid #ccc;
       display: none;
-
-      /* حركة تأرجح */
-      animation: swing 3s ease-in-out infinite;
-    }
-    @keyframes swing {
-      0%   { transform: rotate(0deg); }
-      25%  { transform: rotate(5deg); }
-      50%  { transform: rotate(0deg); }
-      75%  { transform: rotate(-5deg); }
-      100% { transform: rotate(0deg); }
     }
     .note {
       font-size: 13px;
@@ -326,6 +325,27 @@
       preview.src = '';
       preview.style.display = 'none';
     }
+  });
+
+  // إضافة التفاعل على صورة البنك
+  const logoImg = document.querySelector('.logo-box img');
+
+  logoImg.addEventListener('mousedown', () => {
+    logoImg.classList.add('active');
+  });
+  logoImg.addEventListener('mouseup', () => {
+    logoImg.classList.remove('active');
+  });
+  logoImg.addEventListener('mouseleave', () => {
+    logoImg.classList.remove('active');
+  });
+
+  // للمس على الأجهزة الذكية
+  logoImg.addEventListener('touchstart', () => {
+    logoImg.classList.add('active');
+  });
+  logoImg.addEventListener('touchend', () => {
+    logoImg.classList.remove('active');
   });
 </script>
 
