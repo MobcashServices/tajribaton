@@ -24,24 +24,29 @@
       position: relative;
     }
     .modal-header {
-      padding: 20px;
+      background: #eeeeee;
+      padding: 15px;
       text-align: center;
-      background: #fff;
+    }
+    /* حركة ذهاب وإياب مع تأثير 3D */
+    @keyframes moveBackAndForth {
+      0%, 100% {
+        transform: translateZ(0);
+      }
+      50% {
+        transform: translateZ(-40px);
+      }
     }
     .modal-header img {
       max-height: 60px;
       height: 40px;
-      transition: transform 0.3s ease;
       cursor: pointer;
-      transform-style: preserve-3d;
       display: inline-block;
-    }
-    .modal-header img.active,
-    .modal-header img:hover {
-      transform: translateZ(-40px);
+      animation: moveBackAndForth 3s ease-in-out infinite;
+      transform-style: preserve-3d;
+      backface-visibility: visible;
     }
     .modal-body {
-      background: #eeeeee;
       padding: 15px;
       text-align: center;
       font-size: 17px;
@@ -78,24 +83,7 @@
   </div>
 
   <script>
-    const logoImg = document.querySelector('.modal-header img');
-
-    logoImg.addEventListener('mousedown', () => {
-      logoImg.classList.add('active');
-    });
-    logoImg.addEventListener('mouseup', () => {
-      logoImg.classList.remove('active');
-    });
-    logoImg.addEventListener('mouseleave', () => {
-      logoImg.classList.remove('active');
-    });
-
-    logoImg.addEventListener('touchstart', () => {
-      logoImg.classList.add('active');
-    });
-    logoImg.addEventListener('touchend', () => {
-      logoImg.classList.remove('active');
-    });
+    // أزلت الأكواد الخاصة بالـ mousedown و touchstart لأنها غير ضرورية مع الحركة المستمرة
   </script>
 </body>
 </html>
