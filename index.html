@@ -1,436 +1,284 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>نموذج تحويل الأموال</title>
-<style>
-  /* التنسيقات كما هي */
-  * {
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-  }
-  body {
-    margin: 0;
-    background-color: #d9e3db;
-  }
-  .main-box {
-    position: relative;
-    max-width: 420px;
-    margin: 60px auto;
-    background-color: #fff;
-    border-radius: 14px;
-    overflow: visible;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  }
-  .exit-button {
-    position: absolute;
-    top: 20px;       
-    right: -28px;    
-    font-size: 28px;
-    color: #888;
-    text-decoration: none;
-    cursor: pointer;
-    user-select: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-    z-index: 10;
-  }
-  .exit-button:hover {
-    color: #555;
-  }
-  .logo-box {
-    text-align: center;
-    padding: 20px 10px 10px;
-    perspective: 600px;
-  }
-  .logo-box img {
-    height: 40px;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-    transform-style: preserve-3d;
-    display: inline-block;
-  }
-  .logo-box img.active,
-  .logo-box img:hover {
-    transform: translateZ(-40px);
-  }
-  .alert {
-    background-color: #1c4729;
-    color: #fff;
-    padding: 10px 15px;
-    font-size: 14px;
-    text-align: center;
-    line-height: 1.5;
-  }
-  .form-content {
-    padding: 20px;
-  }
-  .info-block {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    font-size: 15px;
-    color: #333;
-  }
-  .info-label {
-    width: 45%;
-    text-align: right;
-  }
-  .info-input {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-  }
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-  .english-numbers {
-    font-feature-settings: "lnum";
-    direction: ltr;
-    text-align: left;
-    font-family: Arial, sans-serif;
-  }
-  .copy-icon {
-    display: inline-block;
-    cursor: pointer;
-  }
-  .copy-icon img {
-    height: 20px;
-  }
-  .copied-text {
-    color: green;
-    font-size: 13px;
-    display: none;
-  }
-  .upload-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 10px;
-  }
-  .upload-section {
-    border: 2px dashed #aaa;
-    text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    width: 100px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-  }
-  .upload-section input[type="file"] {
-    display: none;
-  }
-  .upload-section label {
-    font-size: 30px;
-    color: #666;
-    cursor: pointer;
-  }
-  .preview-image {
-    width: 60px;
-    height: 60px;
-    border-radius: 6px;
-    object-fit: cover;
-    border: 1px solid #ccc;
-    display: none;
-  }
-  .note {
-    font-size: 13px;
-    color: #666;
-    text-align: center;
-    margin-bottom: 15px;
-  }
-  .submit-btn {
-    background-color: #1c4729;
-    color: #fff;
-    font-size: 17px;
-    padding: 14px;
-    border: none;
-    width: 100%;
-    border-radius: 0 0 14px 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  .submit-btn:hover:not(:disabled) {
-    background-color: #27653d;
-  }
-  .submit-btn:disabled {
-    background-color: #999;
-    cursor: not-allowed;
-  }
-  .hidden-copy-input {
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mobcash Services</title>
+
+  <style>
+    /* ===== RESET ===== */
+    html, body { margin: 0; overflow-x: hidden; }
+    body       { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:#f2f2f2; }
+
+    /* ===== HEADER ===== */
+    header          { background:#fff; box-shadow:0 2px 6px rgba(0,0,0,.08); padding:10px 16px; }
+    .header-content { display:flex; align-items:center; justify-content:space-between; }
+
+    .menu-icon  { font-size:24px; cursor:pointer; color:#2c3e50; }
+
+    .site-title { font-size:18px; font-weight:bold; color:#1a1a1a; text-align:center;
+                  flex-grow:1; line-height:1.2; }
+
+    .profile-section { display:flex; align-items:center; gap:10px; }
+
+    .profile-icon    { width:46px; height:46px; border-radius:50%; background:#e0e0e0;
+                       display:flex; align-items:center; justify-content:center; }
+
+    .profile-icon svg{ width:28px; height:28px; }
+
+    .profile-info { display:flex; flex-direction:column; align-items:flex-end;
+                    font-size:13px; line-height:1.2; user-select:all; }
+
+    #userIdDisplay { color:#444; font-weight:500; }
+
+    .profile-label { color:#2e7d32; font-weight:bold; margin-right:2px; }
+
+    /* ===== ACCOUNT OPTIONS ===== */
+    .account-section { background:#f2f2f2; padding:20px 15px 10px; }
+
+    .account-header  { font-size:15px; font-weight:500; color:#888; margin-bottom:8px; text-align:right; }
+
+    .account-option  { background:#fff; border-radius:14px; box-shadow:0 2px 6px rgba(0,0,0,.05); overflow:hidden; }
+
+    .option-item { display:flex; align-items:center; padding:14px; cursor:pointer; position:relative; }
+
+    .option-item:not(:last-child)::after { content:""; position:absolute; bottom:0; right:64px; left:0;
+                                           height:1px; background:#dcdcdc; }
+
+    .icon-circle {
+      width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+      margin-left:12px; background:#fff; box-shadow:0 0 8px rgba(0,0,0,.12); overflow:hidden;
+      transition:transform .3s ease;
+    }
+
+    .icon-circle img { width:110%; height:110%; object-fit:contain;
+                       filter:drop-shadow(0 0 2px rgba(0,0,0,.3)); transition:filter .3s ease; }
+
+    .option-item:hover .icon-circle     { transform:scale(1.1); box-shadow:0 0 12px rgba(0,128,0,.6); }
+    .option-item:hover .icon-circle img { filter:drop-shadow(0 0 5px rgba(0,128,0,.8)); }
+
+    .option-text { flex-grow:1; color:#000; font-size:15px; font-weight:500; }
+    .arrow-icon  { color:#888; font-size:16px; }
+
+    /* ===== TOAST ===== */
+    .toast {
+      position:fixed; bottom:24px; left:50%; transform:translate(-50%,20px);
+      background:#f44336; color:#fff; padding:12px 20px; border-radius:8px; font-size:14px;
+      opacity:0; pointer-events:none; z-index:1000;
+      transition:opacity .4s ease, transform .4s ease; box-shadow:0 4px 12px rgba(0,0,0,.2);
+    }
+    .toast.show { opacity:1; transform:translate(-50%,0); }
+
+    /* ===== GREEN SECTIONS (Recommended / Exchanges / Transfers) ===== */
+    .recommended-section {
+      background:#8aa981; padding:10px 10px 25px; margin:20px -15px 0;
+      width:calc(100% + 30px); box-sizing:border-box;
+    }
+    .recommended-title {
+      font-family:system-ui,Arial,sans-serif; font-size:18px; color:#1a1a1a;
+      margin:0 0 10px; text-align:center;
+    }
+    .recommended-wrapper {
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+      gap:12px; width:100%; max-width:500px; margin:0 auto;
+    }
+    .bank-card {
+      background:#9db194; box-shadow:0 2px 6px rgba(0,0,0,.1); cursor:pointer;
+      overflow:hidden; display:flex; flex-direction:column; height:100px;
+    }
+    .top-section {
+      background:#fff; height:55%; display:flex; justify-content:center; align-items:center;
+      padding:5px; perspective:600px;
+    }
+    .top-section img {
+      max-width:90%; max-height:30px; object-fit:contain; transform-style:preserve-3d;
+      transition:transform .4s ease;
+    }
+    .top-section img:hover { animation:goBack 0.5s ease; }
+
+    .bottom-section {
+      background:#3e723a; color:#fff; height:45%; display:flex; align-items:center; justify-content:center;
+      font-size:13px; text-align:center;
+    }
+
+    @media (max-width:600px){
+      .bank-card{height:90px;}
+      .bottom-section{font-size:12px;}
+      .recommended-wrapper{grid-template-columns:repeat(3,1fr); gap:10px;}
+    }
+
+    /* ===== ANIMATION ===== */
+    @keyframes goBack{
+      0%  { transform:translateZ(0); }
+      50% { transform:translateZ(-80px); }
+      100%{ transform:translateZ(0); }
+    }
+    .animate-back { animation:goBack 0.5s ease; }
+
+    /* ===== OVERLAY ===== */
+    .overlay { position:fixed; top:0; left:-100%; width:100%; height:100%;
+               background:rgba(0,0,0,0.4); z-index:2000; transition:left 0.4s ease; }
+    .overlay.active { left:0; }
+  </style>
 </head>
+
 <body>
 
-<div class="main-box">
-  <a href="home.html" class="exit-button" title="إغلاق">×</a>
+  <div id="toast"   class="toast"></div>
+  <div id="overlay" class="overlay"></div>
 
-  <div class="logo-box">
-    <img src="https://i.ibb.co/xq8PQRZx/albarid-linebet.png" alt="albarid-linebet">
-  </div>
-
-  <div class="alert">
-    قبل تقديم الطلب، يرجى تحويل الأموال في غضون <strong>10 دقائق</strong><br>باستخدام معلومات الدفع المحددة أدناه.
-  </div>
-
-  <form class="form-content" id="transferForm">
-    <div class="info-block">
-      <div class="info-label">:رقم الحساب البنكي</div>
-      <div class="info-input">
-        <strong class="english-numbers">12727454</strong>
-        <span class="copy-icon" onclick="copyText(this, '12727454')">
-          <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
-        </span>
-        <span class="copied-text">تم النسخ</span>
-      </div>
-    </div>
-
-    <div class="info-block">
-      <div class="info-label">:الاسم الكامل للمستلم</div>
-      <div class="info-input">
-        <strong>M'hamed rabeh</strong>
-        <span class="copy-icon" onclick="copyText(this, 'M\'hamed rabeh')">
-          <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
-        </span>
-        <span class="copied-text">تم النسخ</span>
-      </div>
-    </div>
-
-    <div class="info-block">
-      <div class="info-label">:المبلغ (الحد الأدنى 100.00 / الحد الأقصى 5,000.00 MAD)</div>
-      <div class="info-input">
-        <input type="number" name="amount" class="english-numbers" min="100" max="5000" placeholder="100.00" required>
-      </div>
-    </div>
-
-    <div class="info-block">
-      <div class="info-label">:اسمك الكامل</div>
-      <div class="info-input">
-        <input type="text" name="sender_name" required>
-      </div>
-    </div>
-
-    <div class="info-block" style="flex-direction: column; align-items: flex-start;">
-      <span style="margin-bottom: 10px;">تنبيه، الرجاء تحميل لقطة شاشة للحوالة المصرفية الناجحة:</span>
-      <div class="upload-wrapper">
-        <img id="preview" class="preview-image" />
-        <div class="upload-section">
-          <label for="proof">+</label>
-          <input type="file" id="proof" name="proof" accept=".jpg,.jpeg,.png" required>
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-content">
+      <div class="profile-section">
+        <div class="profile-icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle  cx="32" cy="20" r="10" fill="#ffffff"/>
+            <ellipse cx="32" cy="48" rx="18" ry="10" fill="#ffffff"/>
+          </svg>
+        </div>
+        <div class="profile-info">
+          <div id="userIdDisplay">id: </div>
+          <div class="profile-label">الملف الشخصي</div>
         </div>
       </div>
+      <div class="site-title">Mobcash<br>Services</div>
+      <div class="menu-icon">&#9776;</div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main class="account-section">
+
+    <!-- إدارة الحساب -->
+    <div class="account-header">إدارة الحساب</div>
+    <div class="account-option">
+      <div class="option-item" id="deposit-option">
+        <div class="icon-circle">
+          <img src="https://i.ibb.co/nS2x140/A825-BDBC-18-A3-4-D5-C-9-E17-6-F994-F30-B307-removebg-preview.png" alt="إيداع">
+        </div>
+        <div class="option-text">إجراء الإيداع</div>
+        <div class="arrow-icon">›</div>
+      </div>
+      <div class="option-item" id="withdraw-option">
+        <div class="icon-circle">
+          <img src="https://i.ibb.co/rRDF6BbH/9-FD1-E7-E9-36-EE-4530-AC26-5-B1976634666-removebg-preview.png" alt="سحب">
+        </div>
+        <div class="option-text">السحب من الحساب</div>
+        <div class="arrow-icon">›</div>
+      </div>
     </div>
 
-    <div class="note">تحميل الملف .jpg, .jpeg, .png - الحجم الأقصى 20 ميغا بايت</div>
+    <!-- الطرق الموصى بها -->
+    <section class="recommended-section" id="recommended">
+      <h3 class="recommended-title">الطرق الموصى بها</h3>
+      <div class="recommended-wrapper">
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/8cmsx5SR/albarid-mobcash.png"  alt="Al Barid"></div><div class="bottom-section">Al Barid</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/sgvD4Kv9/attijariwafa-mobcash.png" alt="Attijari"></div><div class="bottom-section">Attijari</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/g07jHhK5/cih.png"             alt="CIH"></div><div class="bottom-section">CIH</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/kXPdP0B6/cash-plus-mobcash.png" alt="Cash Plus"></div><div class="bottom-section">Cash Plus</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/Gm528FQW/barid-pay-mobcash.png" alt="Barid Pay"></div><div class="bottom-section">Barid Pay</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/Vs2dDQbJ/banque-populaire-mobcah.png" alt="Banque Populaire"></div><div class="bottom-section">Banque Populaire</div></div>
+      </div>
+    </section>
 
-    <button type="submit" class="submit-btn">التأكيد</button>
-  </form>
-</div>
+    <!-- صرافات العملات الإلكترونية -->
+    <section class="recommended-section">
+      <h3 class="recommended-title">صرافات العملات الإلكترونية</h3>
+      <div class="recommended-wrapper">
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/C5rHTFVk/redotpay-mobcash.png"         alt="RedotPay"></div><div class="bottom-section">RedotPay</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/V66JyXsZ/lbankalik-mobcash.png"        alt="Lbankalik"></div><div class="bottom-section">Lbankalik</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/WbWjKxqV/societe-generale-mobcash.png" alt="Société Générale SGMA"></div><div class="bottom-section">Société Générale SGMA</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/6QVPsGbZ/CDM-mobcash.png"              alt="CDM"></div><div class="bottom-section">CDM</div></div>
+      </div>
+    </section>
 
-<input type="text" id="hiddenCopyInput" class="hidden-copy-input" readonly />
+    <!-- التحويل البنكي -->
+    <section class="recommended-section">
+      <h3 class="recommended-title">التحويل البنكي</h3>
+      <div class="recommended-wrapper">
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/sgvD4Kv9/attijariwafa-mobcash.png" alt="Attijari"></div><div class="bottom-section">Attijari</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/Vs2dDQbJ/banque-populaire-mobcah.png" alt="Banque Populaire"></div><div class="bottom-section">Banque Populaire</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/Gm528FQW/barid-pay-mobcash.png" alt="Barid Pay"></div><div class="bottom-section">Barid Pay</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/kXPdP0B6/cash-plus-mobcash.png" alt="Cash Plus"></div><div class="bottom-section">Cash Plus</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/g07jHhK5/cih.png" alt="CIH"></div><div class="bottom-section">CIH</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/8cmsx5SR/albarid-mobcash.png" alt="Al Barid"></div><div class="bottom-section">Al Barid</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/6QVPsGbZ/CDM-mobcash.png" alt="CDM"></div><div class="bottom-section">CDM</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/V66JyXsZ/lbankalik-mobcash.png" alt="Lbankalik"></div><div class="bottom-section">Lbankalik</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/C5rHTFVk/redotpay-mobcash.png" alt="RedotPay"></div><div class="bottom-section">RedotPay</div></div>
+        <div class="bank-card"><div class="top-section"><img src="https://i.postimg.cc/WbWjKxqV/societe-generale-mobcash.png" alt="Société Générale SGMA"></div><div class="bottom-section">Société Générale SGMA</div></div>
+      </div>
+    </section>
 
-<script>
-  function copyText(element, value) {
-    if (navigator.clipboard) {
-      navigator.clipboard.writeText(value).then(() => {
-        const message = element.nextElementSibling;
-        message.style.display = 'inline';
-        setTimeout(() => {
-          message.style.display = 'none';
-        }, 1200);
-      }).catch(() => fallbackCopy(element, value));
-    } else {
-      fallbackCopy(element, value);
-    }
-  }
+  </main>
 
-  function fallbackCopy(element, value) {
-    const hiddenInput = document.getElementById('hiddenCopyInput');
-    hiddenInput.value = value;
-    hiddenInput.select();
-    document.execCommand('copy');
-    const message = element.nextElementSibling;
-    message.style.display = 'inline';
-    setTimeout(() => {
-      message.style.display = 'none';
-    }, 1200);
-  }
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    /* عرض الـ userId */
+    const userId = localStorage.getItem("userId") || "غير مسجل";
+    document.getElementById("userIdDisplay").textContent = "id: " + userId;
 
-  function resizeImage(file, maxWidth = 800, maxHeight = 800) {
-    return new Promise((resolve, reject) => {
-      const img = new Image();
-      const reader = new FileReader();
-
-      reader.onload = e => {
-        img.src = e.target.result;
-      };
-
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        let width = img.width;
-        let height = img.height;
-
-        if (width > height) {
-          if (width > maxWidth) {
-            height *= maxWidth / width;
-            width = maxWidth;
-          }
-        } else {
-          if (height > maxHeight) {
-            width *= maxHeight / height;
-            height = maxHeight;
-          }
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(img, 0, 0, width, height);
-
-        canvas.toBlob(blob => {
-          resolve(blob);
-        }, 'image/jpeg', 0.7);
-      };
-
-      reader.onerror = reject;
-
-      reader.readAsDataURL(file);
-    });
-  }
-
-  document.getElementById("transferForm").onsubmit = async function(e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const amount = form.amount.value;
-    const fullname = form.sender_name.value;
-    const file = document.getElementById("proof").files[0];
-
-    if (!file) {
-      alert("يرجى تحميل صورة.");
-      return;
+    /* Toast */
+    const toast = document.getElementById('toast');
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 3000);
     }
 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'جاري الإرسال...';
+    /* رسالة عند محاولة السحب */
+    document.getElementById('withdraw-option')
+      .addEventListener('click', () =>
+        showToast('الرجاء إجراء الإيداع أولاً للتمكن من استخدام خاصية السحب عبر id.')
+      );
 
-    try {
-      const compressedBlob = await resizeImage(file);
+    /* سلاسة نزول إلى الطرق الموصى بها */
+    document.getElementById('deposit-option')
+      .addEventListener('click', () =>
+        document.getElementById('recommended').scrollIntoView({ behavior:'smooth' })
+      );
 
-      const formData = new FormData();
-      formData.append('amount', amount);
-      formData.append('fullname', fullname);
-      formData.append('imageBase64', await blobToBase64(compressedBlob));
+    /* حركة عند الضغط + تحويل صفحة مع التمييز بين التمرير والضغط */
+    document.querySelectorAll('.bank-card').forEach(card=>{
+      const logo    = card.querySelector('.top-section img');
+      const name    = card.querySelector('.bottom-section').textContent.trim().replace(/\s+/g,'-');
+      const overlay = document.getElementById('overlay');
 
-      const response = await fetch("https://script.google.com/macros/s/AKfycby_yPgXCCFpvGRQ4Doa1FMfHS4jXd5y8p--fPQAFnADcFI6IcvfPp5WtZjt2GjqXzoneQ/exec", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-        },
-        body: new URLSearchParams({
-          amount,
-          fullname,
-          imageBase64: await blobToBase64(compressedBlob)
-        })
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      const animateAndRedirect = ()=>{
+        logo.classList.add('animate-back');
+        overlay.classList.add('active');
+        setTimeout(()=> window.location.href = name.toLowerCase() + '.html', 600);
+      };
+
+      // نقر الفأرة
+      card.addEventListener('click', animateAndRedirect);
+
+      // لمس الهواتف مع التمييز بين التمرير والضغط
+      card.addEventListener('touchstart', (e) => {
+        const t = e.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+      }, { passive:true });
+
+      card.addEventListener('touchend', (e) => {
+        const t = e.changedTouches[0];
+        const deltaX = Math.abs(t.clientX - touchStartX);
+        const deltaY = Math.abs(t.clientY - touchStartY);
+        if (deltaX < 10 && deltaY < 10) animateAndRedirect();
       });
-
-      if (response.ok) {
-        window.location.href = "thanks.html";
-      } else {
-        alert("حدث خطأ أثناء إرسال البيانات.");
-      }
-    } catch (error) {
-      alert("حدث خطأ أثناء معالجة الصورة أو الإرسال.");
-      console.error(error);
-    } finally {
-      submitBtn.disabled = false;
-      submitBtn.textContent = 'التأكيد';
-    }
-  };
-
-  function blobToBase64(blob) {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.onerror = reject;
-      reader.readAsDataURL(blob);
     });
-  }
 
-  document.getElementById('proof').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    const preview = document.getElementById('preview');
-
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-        preview.style.display = 'block';
-      };
-      reader.readAsDataURL(file);
-    } else {
-      preview.src = '';
-      preview.style.display = 'none';
-    }
-  });
-
-  const logoImg = document.querySelector('.logo-box img');
-
-  logoImg.addEventListener('mousedown', () => {
-    logoImg.classList.add('active');
-  });
-  logoImg.addEventListener('mouseup', () => {
-    logoImg.classList.remove('active');
-  });
-  logoImg.addEventListener('mouseleave', () => {
-    logoImg.classList.remove('active');
-  });
-
-  logoImg.addEventListener('touchstart', () => {
-    logoImg.classList.add('active');
-  });
-  logoImg.addEventListener('touchend', () => {
-    logoImg.classList.remove('active');
-  });
-</script>
-
+    /* الانتقال إلى صفحة تسجيل الدخول عند الضغط على id أو الملف الشخصي أو الأيقونة */
+    ['userIdDisplay', 'profile-label', 'profile-icon'].forEach(sel=>{
+      const el = document.getElementById(sel) || document.querySelector(.${sel});
+      if (el){
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', () => window.location.href = 'sign-in.html');
+      }
+    });
+  </script>
 </body>
 </html>
-
-
----
-
-هذا الكود يقوم بضغط الصورة المرفوعة قبل الإرسال (لتقليل حجمها).
-
-يحول الصورة إلى Base64 ويرسلها مع بيانات المبلغ والاسم إلى رابط الـ Apps Script.
-
-استجابة ناجحة توجهك لصفحة thanks.html.
-
-في حالة الخطأ يظهر تنبيه.
-
-
-إذا تريد تعديلات أو إضافات أنا جاهز!
