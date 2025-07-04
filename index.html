@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="ar" dir="rtl">
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,47 +15,50 @@
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
   <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Inscription Mobcash</h2><!-- زر En un clic -->
-<button
-  id="oneClickTab"
-  class="w-full mb-6 flex items-center justify-center gap-2 rounded-xl py-2 font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-95 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500">
-  <i data-lucide="zap" class="w-4 h-4"></i>
-  En&nbsp;un&nbsp;clic
-</button>
+    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Inscription Mobcash</h2>
 
-<!-- حقل اختيار المنصة -->
-<div class="mb-4">
-  <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
-  <select id="platform" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-    <option value="" disabled selected hidden>اختر المنصة</option>
-    <option value="Mega pari">Mega pari</option>
-    <option value="Linbet">Linbet</option>
-    <option value="Gooobet">Gooobet</option>
-    <option value="1xbet">1xbet</option>
-    <option value="Melbet">Melbet</option>
-  </select>
-</div>
+    <!-- زر En un clic -->
+    <button
+      id="oneClickTab"
+      class="w-full mb-6 flex items-center justify-center gap-2 rounded-xl py-2 font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-95 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500">
+      <i data-lucide="zap" class="w-4 h-4"></i>
+      En&nbsp;un&nbsp;clic
+    </button>
 
-<!-- حقل ID -->
-<div class="mb-4">
-  <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID (10 أرقام)</label>
-  <input type="text" id="userId" maxlength="10" placeholder="مثال: 1234567890" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="validateId()" />
-</div>
+    <!-- حقل اختيار المنصة -->
+    <div class="mb-4">
+      <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
+      <select id="platform" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="" disabled selected hidden>اختر المنصة</option>
+        <option value="Mega pari">Mega pari</option>
+        <option value="Linbet">Linbet</option>
+        <option value="Gooobet">Gooobet</option>
+        <option value="1xbet">1xbet</option>
+        <option value="Melbet">Melbet</option>
+      </select>
+    </div>
 
-<!-- الرسالة -->
-<div id="message" class="fade text-center text-sm mb-4 h-5"></div>
+    <!-- حقل ID -->
+    <div class="mb-4">
+      <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID (10 أرقام)</label>
+      <input type="text" id="userId" maxlength="10" placeholder="مثال: 1234567890" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="validateId()" />
+    </div>
 
-<!-- زر التسجيل -->
-<button id="submitBtn" onclick="login()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-  <i data-lucide="log-in" class="w-5 h-5"></i>
-  <span class="label">S’INSCRIRE</span>
-  <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-    <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
-  </svg>
-</button>
+    <!-- الرسالة -->
+    <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
 
-  </div>  <script>
+    <!-- زر التسجيل -->
+    <button id="submitBtn" onclick="login()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
+      <i data-lucide="log-in" class="w-5 h-5"></i>
+      <span class="label">S’INSCRIRE</span>
+      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
+      </svg>
+    </button>
+  </div>
+
+  <script>
     // تفعيل الأيقونات
     lucide.createIcons();
 
@@ -103,7 +107,7 @@
     // عند الرجوع من home.html
     window.addEventListener("pageshow", (e) => { if (e.persisted) resetForm(); });
 
-    // زر التسجيل
+    // زر التسجيل مع إرسال البيانات
     function login() {
       const platform = document.getElementById("platform").value;
       const userId = document.getElementById("userId").value;
@@ -125,9 +129,20 @@
       localStorage.setItem("platform", platform);
       localStorage.setItem("userId", userId);
 
-      setTimeout(() => {
-        window.location.href = "home.html";
-      }, 800);
+      // إرسال البيانات إلى Web App
+      fetch("https://script.google.com/macros/s/AKfycbyiHll8PApcyU7uPcWXaTfhZbmVD9a8EdmuP_dn4t0f8ZRTiP_QFyC06yD1gkJADXOAZA/exec", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ platform, userId })
+      }).finally(() => {
+        // الانتقال بعد الإرسال
+        setTimeout(() => {
+          window.location.href = "home.html";
+        }, 800);
+      });
     }
 
     // عند الضغط على "En un clic"
@@ -140,5 +155,6 @@
       document.getElementById("userId").disabled = false;
       resetForm();
     });
-  </script></body>
+  </script>
+</body>
 </html>
