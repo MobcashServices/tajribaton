@@ -59,13 +59,10 @@
   </div>
 
   <script>
-    // تفعيل الأيقونات
     lucide.createIcons();
 
-    // التحقق من أرقام متشابهة
     const isRepeatedDigits = (id) => /^(\d)\1{9}$/.test(id);
 
-    // عرض رسالة
     function showMessage(text, type = "error") {
       const msg = document.getElementById("message");
       msg.className = "fade show text-center text-sm mb-4 h-5";
@@ -73,7 +70,6 @@
       msg.style.color = type === "success" ? "green" : "red";
     }
 
-    // التحقق من الـ ID أثناء الكتابة
     function validateId() {
       const userId = document.getElementById("userId").value;
       if (!/^\d*$/.test(userId))         { showMessage("يرجى إدخال أرقام فقط."); return; }
@@ -82,7 +78,6 @@
       document.getElementById("message").className = "fade";
     }
 
-    // إعادة تهيئة النموذج
     function resetForm() {
       const btn = document.getElementById("submitBtn");
       const loader = document.getElementById("loader");
@@ -95,7 +90,6 @@
       document.getElementById("userId").disabled = false;
     }
 
-    // تعبئة القيم المخزنة
     document.addEventListener("DOMContentLoaded", () => {
       const storedPlatform = localStorage.getItem("platform");
       const storedId = localStorage.getItem("userId");
@@ -104,10 +98,8 @@
       resetForm();
     });
 
-    // عند الرجوع من home.html
     window.addEventListener("pageshow", (e) => { if (e.persisted) resetForm(); });
 
-    // زر التسجيل مع إرسال البيانات
     function login() {
       const platform = document.getElementById("platform").value;
       const userId = document.getElementById("userId").value;
@@ -132,20 +124,20 @@
       // إرسال البيانات إلى Web App
       fetch("https://script.google.com/macros/s/AKfycbyiHll8PApcyU7uPcWXaTfhZbmVD9a8EdmuP_dn4t0f8ZRTiP_QFyC06yD1gkJADXOAZA/exec", {
         method: "POST",
-        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: JSON.stringify({ platform, userId })
-      }).finally(() => {
-        // الانتقال بعد الإرسال
+        body: platform=${encodeURIComponent(platform)}&userId=${encodeURIComponent(userId)}
+      }).then(() => {
         setTimeout(() => {
           window.location.href = "home.html";
         }, 800);
+      }).catch(() => {
+        showMessage("فشل إرسال البيانات. حاول مرة أخرى.");
+        resetForm();
       });
     }
 
-    // عند الضغط على "En un clic"
     document.getElementById("oneClickTab").addEventListener("click", () => {
       document.getElementById("platform").value = "";
       document.getElementById("userId").value = "";
