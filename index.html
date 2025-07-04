@@ -72,7 +72,7 @@
     function validateId() {
       const userId = document.getElementById("userId").value;
       if (!/^\d*$/.test(userId)) { showMessage("يرجى إدخال أرقام فقط."); return; }
-      if (userId.length !== 10)   { showMessage("يجب إدخال 10 أرقام بالضبط."); return; }
+      if (userId.length !== 10)   { showMessage("يجب أن يحتوي الـ ID على 10 أرقام تماما لإتمام التسجيل."); return; }
       if (isRepeatedDigits(userId)) { showMessage("غير مسموح بـ 10 أرقام متشابهة."); return; }
       // لا رسالة نجاح (بناءً على طلبك)
       document.getElementById("message").className = "fade"; // إخفاء أي رسالة
