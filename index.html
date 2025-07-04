@@ -5,9 +5,7 @@
   <title>Inscription - Mobcash</title>  <!-- Tailwind & أيقونات Lucide -->  <script src="https://cdn.tailwindcss.com"></script>  <script src="https://unpkg.com/lucide@latest"></script>  <style>
     /* لون نصّ العناصر داخل <option> في الثيم الفاتح/الداكن */
     select option { color:#000; }
-    @media (prefers-color-scheme: dark) {
-      select option { color:#fff; }
-    }
+    @media (prefers-color-scheme: dark) { select option { color:#fff; } }
 
     /* حركة الظهور للرسائل */
     .fade     { transition:all .3s ease; opacity:0; transform:translateY(-5px); }
@@ -20,23 +18,15 @@
     </h2><!-- شريط “En un clic” -->
 <button
   id="oneClickTab"
-  class="w-full mb-6 flex items-center justify-center gap-2
-         rounded-xl py-2 font-semibold text-white
-         bg-green-600 hover:bg-green-700 active:scale-95 transition duration-300
-         focus:outline-none focus:ring-2 focus:ring-green-500">
+  class="w-full mb-6 flex items-center justify-center gap-2 rounded-xl py-2 font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-95 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500">
   <i data-lucide="zap" class="w-4 h-4"></i>
   En&nbsp;un&nbsp;clic
 </button>
 
 <!-- الحقول الأصلية -->
 <div class="mb-4">
-  <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-    اختر المنصة
-  </label>
-  <select id="platform"
-          class="w-full px-4 py-2 border rounded-xl text-sm
-                 bg-white text-gray-800 dark:bg-gray-700 dark:text-white
-                 focus:outline-none focus:ring-2 focus:ring-blue-500">
+  <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
+  <select id="platform" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
     <option value="" disabled selected hidden>اختر المنصة</option>
     <option value="Mega pari">Mega pari</option>
     <option value="Linbet">Linbet</option>
@@ -47,23 +37,13 @@
 </div>
 
 <div class="mb-4">
-  <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-    أدخل الـ ID (10 أرقام)
-  </label>
-  <input type="text" id="userId" maxlength="10" placeholder="مثال: 1234567890"
-         class="w-full px-4 py-2 border rounded-xl text-sm
-                bg-white text-gray-800 dark:bg-gray-700 dark:text-white
-                focus:outline-none focus:ring-2 focus:ring-blue-500"
-         oninput="validateId()" />
+  <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID (10 أرقام)</label>
+  <input type="text" id="userId" maxlength="10" placeholder="مثال: 1234567890" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="validateId()" />
 </div>
 
 <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
 
-<button
-  id="submitBtn"
-  onclick="login()"
-  class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl
-         transition duration-300 flex items-center justify-center gap-2">
+<button id="submitBtn" onclick="login()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
   <i data-lucide="log-in" class="w-5 h-5"></i>
   <span class="label">S’INSCRIRE</span>
   <!-- Loader -->
@@ -77,8 +57,8 @@
     /* تفعيل الأيقونات */
     lucide.createIcons();
 
-    /* عرض رسائل التنبيه */
-    function showMessage(text, type="error") {
+    /* رسائل التنبيه */
+    function showMessage(text, type = "error") {
       const msg = document.getElementById("message");
       msg.className = "fade show text-center text-sm mb-4 h-5";
       msg.textContent = text;
@@ -86,22 +66,42 @@
     }
 
     /* التحقق من أرقام متشابهة */
-    function isRepeatedDigits(id) { return /^(\d)\1{9}$/.test(id); }
+    const isRepeatedDigits = (id) => /^(\d)\1{9}$/.test(id);
 
     /* فحص الـ ID أثناء الكتابة */
     function validateId() {
       const userId = document.getElementById("userId").value;
-
       if (!/^\d*$/.test(userId)) { showMessage("يرجى إدخال أرقام فقط."); return; }
-
-      if (userId.length !== 10) {
-        showMessage("يجب إدخال 10 أرقام بالضبط.");
-      } else if (isRepeatedDigits(userId)) {
-        showMessage("غير مسموح بـ 10 أرقام متشابهة.");
-      } else {
-        
-      }
+      if (userId.length !== 10)   { showMessage("يجب إدخال 10 أرقام بالضبط."); return; }
+      if (isRepeatedDigits(userId)) { showMessage("غير مسموح بـ 10 أرقام متشابهة."); return; }
+      // لا رسالة نجاح (بناءً على طلبك)
+      document.getElementById("message").className = "fade"; // إخفاء أي رسالة
     }
+
+    /* إعادة تهيئة النموذج عند الرجوع من الصفحة التالية */
+    function resetForm() {
+      const btn    = document.getElementById("submitBtn");
+      const loader = document.getElementById("loader");
+      const label  = btn.querySelector(".label");
+      btn.disabled = false;
+      btn.classList.remove("opacity-50", "cursor-not-allowed");
+      loader.classList.add("hidden");
+      label.classList.remove("hidden");
+      document.getElementById("platform").disabled = false;
+      document.getElementById("userId").disabled   = false;
+    }
+
+    /* تعبئة الحقول بالقيم المحفوظة + إعادة التهيئة عند التحميل والرجوع */
+    document.addEventListener("DOMContentLoaded", () => {
+      const storedPlatform = localStorage.getItem("platform");
+      const storedId       = localStorage.getItem("userId");
+      if (storedPlatform) document.getElementById("platform").value = storedPlatform;
+      if (storedId)       document.getElementById("userId").value   = storedId;
+      resetForm();
+    });
+
+    /* عند الرجوع من home.html (BFCache) */
+    window.addEventListener("pageshow", (e) => { if (e.persisted) resetForm(); });
 
     /* زر التسجيل */
     function login() {
@@ -111,26 +111,26 @@
       const loader   = document.getElementById("loader");
       const label    = btn.querySelector(".label");
 
-      if (!platform)                       { showMessage("يرجى اختيار المنصة."); return; }
+      // التحقق من صحة البيانات
+      if (!platform)                     { showMessage("يرجى اختيار المنصة."); return; }
       if (userId.length !== 10 || !/^\d+$/.test(userId)) { showMessage("الرجاء إدخال ID مكوّن من 10 أرقام."); return; }
-      if (isRepeatedDigits(userId))        { showMessage("غير مسموح بـ 10 أرقام متشابهة."); return; }
+      if (isRepeatedDigits(userId))      { showMessage("غير مسموح بـ 10 أرقام متشابهة."); return; }
 
-      /* تعطيل العناصر أثناء الإرسال */
+      // تعطيل الواجهة أثناء المعالجة
       btn.disabled = true;
       btn.classList.add("opacity-50", "cursor-not-allowed");
       loader.classList.remove("hidden");
       label.classList.add("hidden");
       document.getElementById("platform").disabled = true;
-      document.getElementById("userId").disabled = true;
+      document.getElementById("userId").disabled   = true;
 
-      /* الحفظ والانتقال */
+      // حفظ القيم والانتقال
       localStorage.setItem("platform", platform);
       localStorage.setItem("userId",   userId);
 
-      // محاكاة تأخير الشبكة البسيط قبل التوجيه
       setTimeout(() => {
         window.location.href = "home.html";
-      }, 800); // 0.8s ليظهر الـ loader لفترة وجيزة
+      }, 800); // إظهار الـ Loader لمدة وجيزة
     }
   </script></body>
 </html>
