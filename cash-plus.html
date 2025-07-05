@@ -274,7 +274,7 @@
     displayPhone.textContent = current;
 
     const copyIcon = displayPhone.parentElement.querySelector(".copy-icon");
-    copyIcon.setAttribute("onclick", copyText(this, '${current}'));
+    copyIcon.onclick = () => copyText(copyIcon, current);
   });
 
   function handleSuccessRedirect() {
@@ -314,16 +314,12 @@
       img.onload = () => {
         const canvas = document.createElement('canvas');
         let width = img.width, height = img.height;
-        if (width > height) {
-          if (width > maxWidth) {
-            height *= maxWidth / width;
-            width = maxWidth;
-          }
-        } else {
-          if (height > maxHeight) {
-            width *= maxHeight / height;
-            height = maxHeight;
-          }
+        if (width > height && width > maxWidth) {
+          height *= maxWidth / width;
+          width = maxWidth;
+        } else if (height > maxHeight) {
+          width *= maxHeight / height;
+          height = maxHeight;
         }
         canvas.width = width;
         canvas.height = height;
