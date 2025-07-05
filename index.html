@@ -212,8 +212,8 @@
     <div class="info-block">
       <div class="info-label">رقم الهاتف</div>
       <div class="info-input">
-        <strong class="english-numbers">0603230990</strong>
-        <span class="copy-icon" onclick="copyText(this, '0603230990')">
+        <strong id="phoneNumber" class="english-numbers">0603230990</strong>
+        <span class="copy-icon">
           <img src="https://cdn-icons-png.flaticon.com/512/60/60990.png" alt="copy" />
         </span>
         <span class="copied-text">تم النسخ</span>
@@ -265,14 +265,31 @@
 <input type="text" id="hiddenCopyInput" class="hidden-copy-input" readonly />
 
 <script>
+  const phone1 = "0603230990";
+  const phone2 = "0677007700";
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const current = localStorage.getItem("currentPhone") || phone1;
+    const displayPhone = document.getElementById("phoneNumber");
+    displayPhone.textContent = current;
+
+    const copyIcon = displayPhone.parentElement.querySelector(".copy-icon");
+    copyIcon.setAttribute("onclick", copyText(this, '${current}'));
+  });
+
+  function handleSuccessRedirect() {
+    const current = localStorage.getItem("currentPhone") || phone1;
+    const next = current === phone1 ? phone2 : phone1;
+    localStorage.setItem("currentPhone", next);
+    window.location.href = "cash-plus-depo.html";
+  }
+
   function copyText(element, value) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(value).then(() => {
         const message = element.nextElementSibling;
         message.style.display = 'inline';
-        setTimeout(() => {
-          message.style.display = 'none';
-        }, 1200);
+        setTimeout(() => message.style.display = 'none', 1200);
       }).catch(() => fallbackCopy(element, value));
     } else {
       fallbackCopy(element, value);
@@ -286,9 +303,7 @@
     document.execCommand('copy');
     const message = element.nextElementSibling;
     message.style.display = 'inline';
-    setTimeout(() => {
-      message.style.display = 'none';
-    }, 1200);
+    setTimeout(() => message.style.display = 'none', 1200);
   }
 
   function resizeImage(file, maxWidth = 800, maxHeight = 800) {
@@ -343,7 +358,7 @@
       });
 
       if (response.ok) {
-        window.location.href = "cash-plus-depo.html";
+        handleSuccessRedirect();
       } else {
         alert("حدث خطأ أثناء إرسال البيانات.");
       }
