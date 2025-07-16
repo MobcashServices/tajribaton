@@ -114,17 +114,17 @@
       }
 
       if (userId === "") {
-        showMessage("أدخل الـ ID.");
+        showMessage("أدخل المعرّف.");
         return;
       }
 
       if ((userId.length !== 9 && userId.length !== 10) || !/^\d+$/.test(userId)) {
-        showMessage("ID غير صالح.");
+        showMessage("المعرف غير معتمد. الرجاء التحقق.");
         return;
       }
 
       if (isRepeatedDigits(userId)) {
-        showMessage("ID غير مقبول.");
+        showMessage("المعرف غير معتمد. الرجاء التحقق.");
         return;
       }
 
