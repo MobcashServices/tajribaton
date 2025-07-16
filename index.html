@@ -38,7 +38,17 @@
 
     <div class="mb-4">
       <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID</label>
-      <input type="text" id="userId" maxlength="10" placeholder="مثال: 1234567890" class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" oninput="validateId()" />
+      <input
+        type="text"
+        id="userId"
+        maxlength="10"
+        inputmode="numeric"
+        pattern="[0-9]*"
+        placeholder="مثال: 1234567890"
+        class="w-full px-4 py-2 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+        oninput="filterDigits(this); validateId()"
+        onkeydown="return isNumberKey(event)"
+      />
     </div>
 
     <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
@@ -65,12 +75,17 @@
       msg.style.color = type === "success" ? "green" : "red";
     }
 
+    function filterDigits(input) {
+      input.value = input.value.replace(/[^\d]/g, ''); // يمنع أي شيء غير رقم إنجليزي
+    }
+
+    function isNumberKey(e) {
+      const key = e.key;
+      return /^[0-9]$/.test(key) || ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(key);
+    }
+
     function validateId() {
       const userId = document.getElementById("userId").value;
-      if (!/^\d*$/.test(userId)) {
-        showMessage("أرقام فقط.");
-        return;
-      }
       if (isRepeatedDigits(userId)) {
         showMessage("المعرف غير معتمد. الرجاء التحقق.");
         return;
