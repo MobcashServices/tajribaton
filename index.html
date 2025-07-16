@@ -51,8 +51,8 @@
         <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
       </svg>
     </button>
+  </div>
 
-  </div>  
   <script>
     lucide.createIcons();
 
@@ -68,11 +68,11 @@
     function validateId() {
       const userId = document.getElementById("userId").value;
       if (!/^\d*$/.test(userId)) {
-        showMessage("يرجى إدخال أرقام فقط.");
+        showMessage("أرقام فقط.");
         return;
       }
       if (isRepeatedDigits(userId)) {
-        showMessage("المعرف غير معتمد. الرجاء التحقق.");
+        showMessage("ID غير مقبول.");
         return;
       }
       document.getElementById("message").className = "fade";
@@ -103,23 +103,28 @@
 
     function login() {
       const platform = document.getElementById("platform").value;
-      const userId = document.getElementById("userId").value;
+      const userId = document.getElementById("userId").value.trim();
       const btn = document.getElementById("submitBtn");
       const loader = document.getElementById("loader");
       const label = btn.querySelector(".label");
 
       if (!platform) {
-        showMessage("يرجى اختيار المنصة.");
+        showMessage("اختر المنصة.");
+        return;
+      }
+
+      if (userId === "") {
+        showMessage("أدخل الـ ID.");
         return;
       }
 
       if ((userId.length !== 9 && userId.length !== 10) || !/^\d+$/.test(userId)) {
-        showMessage("المعرف غير معتمد. الرجاء التحقق.");
+        showMessage("ID غير صالح.");
         return;
       }
 
       if (isRepeatedDigits(userId)) {
-        showMessage("المعرف غير معتمد. الرجاء التحقق.");
+        showMessage("ID غير مقبول.");
         return;
       }
 
