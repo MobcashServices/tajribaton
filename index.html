@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CashPlus Deposit</title>
+  <title>Cash Plus Deposit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: rgba(0, 0, 0, 0.4);
+      font-family: 'Tajawal', sans-serif;
+      background: rgba(0, 0, 0, 0.4);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -17,124 +17,95 @@
     }
 
     .modal {
+      background: #fff;
+      border-radius: 4px;
+      width: 350px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
       position: relative;
-      background-color: #fff;
-      width: 340px;
-      padding: 0;
-      border-radius: 6px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-    }
-
-    .modal-header {
       padding: 20px;
       text-align: center;
-      border-bottom: 1px solid #eee;
     }
 
-    .modal-header img {
-      width: 120px;
-      height: auto;
-    }
-
-    .modal-close {
+    .modal .close {
       position: absolute;
-      top: 8px;
-      right: 12px;
-      font-size: 20px;
+      top: 10px;
+      right: 10px;
+      font-weight: bold;
       cursor: pointer;
-      color: #999;
+      font-size: 20px;
     }
 
-    .modal-body {
-      background-color: #f3f3f3;
-      padding: 20px;
+    .modal img.logo {
+      width: 140px;
+      margin-bottom: 10px;
     }
 
-    .progress-bar {
+    .stepper {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-bottom: 25px;
-      gap: 20px;
+      gap: 10px;
+      margin: 10px 0 20px;
     }
 
-    .circle {
-      width: 12px;
-      height: 12px;
+    .stepper span {
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
-      background-color: #ccc;
+      background: #ccc;
     }
 
-    .circle.active {
-      background-color: #43b02a;
+    .stepper .active {
+      background: #4caf50;
     }
 
     .amount-label {
-      font-size: 14px;
-      margin-bottom: 8px;
-      color: #333;
+      text-align: left;
+      font-size: 13px;
+      margin-bottom: 5px;
     }
 
-    .amount-group {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    input[type="text"] {
-      padding: 8px;
-      font-size: 14px;
+    .amount-input {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
       border: 1px solid #ccc;
-      border-radius: 4px;
-      flex: 1;
+      text-align: center;
     }
 
     .deposit-btn {
       width: 100%;
-      padding: 12px 0;
-      background-color: #e50914;
-      color: white;
-      font-weight: bold;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #e53935;
       border: none;
-      border-radius: 4px;
+      color: white;
+      font-size: 16px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.3s;
     }
 
     .deposit-btn:hover {
-      background-color: #c20811;
+      filter: brightness(0.95);
     }
   </style>
 </head>
 <body>
 
   <div class="modal">
-    <div class="modal-close">&times;</div>
-
-    <div class="modal-header">
-      <img src="./xpay/images/money/cash_plus.png" alt="Cash Plus" />
+    <span class="close" onclick="alert('Close clicked')">&times;</span>
+    <img src="https://i.ibb.co/wRKNRPK/cash-plus-logo.png" alt="Cash Plus" class="logo" />
+    
+    <div class="stepper">
+      <span class="active"></span>
+      <span></span>
+      <span></span>
     </div>
 
-    <div class="modal-body">
-      <div class="progress-bar">
-        <div class="circle active"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
-      </div>
+    <div class="amount-label">Amount (Min 100.00 MAD / Max 5 000.00 MAD):</div>
+    <input type="number" class="amount-input" value="100.00" min="100" max="5000" />
 
-      <div class="amount-label">
-        Amount (Min 100.00 MAD / Max 5 000.00 MAD):
-      </div>
-
-      <div class="amount-group">
-        <input type="text" value="100.00" placeholder="100.00" />
-      </div>
-
-      <button class="deposit-btn">DEPOSIT</button>
-    </div>
+    <button class="deposit-btn">DEPOSIT</button>
   </div>
 
 </body>
