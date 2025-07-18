@@ -1,215 +1,141 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sign in to - Mobcash</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <title>CashPlus Deposit</title>
   <style>
-    select option { color:#000; }
-    @media (prefers-color-scheme: dark) { select option { color:#fff; } }
-    .fade     { transition:all .3s ease; opacity:0; transform:translateY(-5px); }
-    .fade.show{ opacity:1; transform:translateY(0); }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .modal {
+      position: relative;
+      background-color: #fff;
+      width: 340px;
+      padding: 0;
+      border-radius: 6px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 20px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .modal-header img {
+      width: 120px;
+      height: auto;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+    }
+
+    .modal-body {
+      background-color: #f3f3f3;
+      padding: 20px;
+    }
+
+    .progress-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+      gap: 20px;
+    }
+
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #ccc;
+    }
+
+    .circle.active {
+      background-color: #43b02a;
+    }
+
+    .amount-label {
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    .amount-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+
+    .deposit-btn {
+      width: 100%;
+      padding: 12px 0;
+      background-color: #e50914;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .deposit-btn:hover {
+      background-color: #c20811;
+    }
   </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
-  <div class="bg-white dark:bg-gray-800 shadow-2xl rounded-2xl p-8 w-full max-w-md">
-    <h2 class="text-2xl font-bold text-center text-gray-800 dark:text-white mb-6">Sign in to Mobcash</h2>
+<body>
 
-    <button
-      id="oneClickTab"
-      class="w-full mb-6 flex items-center justify-center gap-2 rounded-xl py-2 font-semibold text-white bg-green-600 hover:bg-green-700 active:scale-95 transition duration-300 focus:outline-none focus:ring-2 focus:ring-green-500">
-      <i data-lucide="zap" class="w-4 h-4"></i>
-      En&nbsp;un&nbsp;clic
-    </button>
+  <div class="modal">
+    <div class="modal-close">&times;</div>
 
-    <!-- حقل المنصة -->
-    <div class="mb-4 relative">
-      <label for="platform" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">اختر المنصة</label>
-      <select
-        id="platform"
-        class="w-full pl-12 py-2 pr-4 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        onchange="validatePlatform()"
-      >
-        <option value="" disabled selected hidden>اختر المنصة</option>
-        <option value="Mega pari">Mega pari</option>
-        <option value="Linbet">Linbet</option>
-        <option value="Gooobet">Gooobet</option>
-        <option value="1xbet">1xbet</option>
-        <option value="Melbet">Melbet</option>
-      </select>
-      <div id="checkIconPlatform" class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 hidden text-blue-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none"/>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2l4 -4"/>
-        </svg>
-      </div>
+    <div class="modal-header">
+      <img src="./xpay/images/money/cash_plus.png" alt="Cash Plus" />
     </div>
 
-    <!-- حقل ID -->
-    <div class="mb-4 relative">
-      <label for="userId" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">أدخل الـ ID</label>
-      <input
-        type="text"
-        id="userId"
-        maxlength="10"
-        inputmode="numeric"
-        pattern="[0-9]*"
-        placeholder="مثال: 1234567890"
-        class="w-full pl-12 py-2 pr-4 border rounded-xl text-sm bg-white text-gray-800 dark:bg-gray-700 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        oninput="filterDigits(this); validateId()"
-        onkeydown="return isNumberKey(event)"
-      />
-      <div id="checkIcon" class="pointer-events-none absolute top-1/2 left-3 -translate-y-1/2 hidden text-blue-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none"/>
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2l4 -4"/>
-        </svg>
+    <div class="modal-body">
+      <div class="progress-bar">
+        <div class="circle active"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
       </div>
+
+      <div class="amount-label">
+        Amount (Min 100.00 MAD / Max 5 000.00 MAD):
+      </div>
+
+      <div class="amount-group">
+        <input type="text" value="100.00" placeholder="100.00" />
+      </div>
+
+      <button class="deposit-btn">DEPOSIT</button>
     </div>
-
-    <div id="message" class="fade text-center text-sm mb-4 h-5"></div>
-
-    <!-- زر الدخول -->
-    <button id="submitBtn" onclick="login()" class="relative w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-xl transition duration-300 flex items-center justify-center gap-2">
-      <i data-lucide="log-in" class="w-5 h-5"></i>
-      <span class="label">Sign in</span>
-      <svg id="loader" class="hidden absolute w-5 h-5 animate-spin" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-        <path class="opacity-75" d="M4 12a8 8 0 018-8v8z" fill="currentColor"></path>
-      </svg>
-    </button>
   </div>
 
-  <script>
-    lucide.createIcons();
-
-    const isRepeatedDigits = (id) => /^(\d)\1{8,9}$/.test(id);
-
-    function showMessage(text, type = "error") {
-      const msg = document.getElementById("message");
-      msg.className = "fade show text-center text-sm mb-4 h-5";
-      msg.textContent = text;
-      msg.style.color = type === "success" ? "green" : "red";
-    }
-
-    function filterDigits(input) {
-      input.value = input.value.replace(/[^\d]/g, '');
-    }
-
-    function isNumberKey(e) {
-      const key = e.key;
-      return /^[0-9]$/.test(key) || ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'].includes(key);
-    }
-
-    function validateId() {
-      const userId = document.getElementById("userId").value;
-      const icon = document.getElementById("checkIcon");
-
-      if (userId.length >= 9 && userId.length <= 10 && /^\d+$/.test(userId) && !isRepeatedDigits(userId)) {
-        icon.classList.remove("hidden");
-        showMessage("", "success");
-      } else {
-        icon.classList.add("hidden");
-        if (userId.length > 0 && (userId.length < 9 || userId.length > 10 || isRepeatedDigits(userId))) {
-          showMessage("المعرف غير معتمد. الرجاء التحقق.");
-        } else {
-          showMessage("");
-        }
-      }
-    }
-
-    function validatePlatform() {
-      const platform = document.getElementById("platform").value;
-      const icon = document.getElementById("checkIconPlatform");
-      icon.classList.toggle("hidden", !platform);
-    }
-
-    function resetForm() {
-      const btn = document.getElementById("submitBtn");
-      const loader = document.getElementById("loader");
-      const label = btn.querySelector(".label");
-      btn.disabled = false;
-      btn.classList.remove("opacity-50", "cursor-not-allowed");
-      loader.classList.add("hidden");
-      label.classList.remove("hidden");
-      document.getElementById("platform").disabled = false;
-      document.getElementById("userId").disabled = false;
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const storedPlatform = localStorage.getItem("platform");
-      const storedId = localStorage.getItem("userId");
-      if (storedPlatform) document.getElementById("platform").value = storedPlatform;
-      if (storedId) document.getElementById("userId").value = storedId;
-      validateId();
-      validatePlatform();
-      resetForm();
-    });
-
-    window.addEventListener("pageshow", (e) => { if (e.persisted) resetForm(); });
-
-    function login() {
-      const platform = document.getElementById("platform").value;
-      const userId = document.getElementById("userId").value.trim();
-      const btn = document.getElementById("submitBtn");
-      const loader = document.getElementById("loader");
-      const label = btn.querySelector(".label");
-
-      if (!platform) {
-        showMessage("اختر المنصة.");
-        return;
-      }
-
-      if (userId === "") {
-        showMessage("أدخل المعرّف.");
-        return;
-      }
-
-      if ((userId.length !== 9 && userId.length !== 10) || !/^\d+$/.test(userId)) {
-        showMessage("المعرف غير معتمد. الرجاء التحقق.");
-        return;
-      }
-
-      if (isRepeatedDigits(userId)) {
-        showMessage("المعرف غير معتمد. الرجاء التحقق.");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.classList.add("opacity-50", "cursor-not-allowed");
-      loader.classList.remove("hidden");
-      label.classList.add("hidden");
-      document.getElementById("platform").disabled = true;
-      document.getElementById("userId").disabled = true;
-
-      localStorage.setItem("platform", platform);
-      localStorage.setItem("userId", userId);
-
-      fetch("https://script.google.com/macros/s/AKfycbztE1ZG1WWVrbtfaKPTqOatcrue2jjUDoGpdPv1HyHcq0l6rPyD7aL6OT5Pfekpf_pAUA/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ platform, userId })
-      }).finally(() => {
-        setTimeout(() => {
-          window.location.href = "home.html";
-        }, 800);
-      });
-    }
-
-    document.getElementById("oneClickTab").addEventListener("click", () => {
-      document.getElementById("platform").value = "";
-      document.getElementById("userId").value = "";
-      document.getElementById("message").className = "fade";
-      document.getElementById("message").textContent = "";
-      document.getElementById("platform").disabled = false;
-      document.getElementById("userId").disabled = false;
-      validateId();
-      validatePlatform();
-      resetForm();
-    });
-  </script>
 </body>
 </html>
