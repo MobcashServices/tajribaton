@@ -84,11 +84,18 @@
       border-bottom: 1px solid #eee;
     }
 
+    /* نغلف الشعار داخل عنصر LTR معزول */
+    .logo-wrapper {
+      direction: ltr;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+    }
+
     .modal-header img {
       height: 50px;
       object-fit: contain;
-      transform: scaleX(1);
-      direction: ltr;
     }
 
     .close-btn {
@@ -202,7 +209,9 @@
 <div class="container">
   <div class="modal-content">
     <div class="modal-header">
-      <img src="https://i.postimg.cc/tg9fkNbd/cash-plus-linebet.png" alt="CashPlus" />
+      <div class="logo-wrapper">
+        <img src="https://i.postimg.cc/tg9fkNbd/cash-plus-linebet.png" alt="CashPlus Logo" />
+      </div>
       <div class="close-btn" onclick="alert('Close')">×</div>
     </div>
 
