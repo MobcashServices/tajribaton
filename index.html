@@ -7,6 +7,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
     :root {
+      --header-height: 60px;
       --idbet-color: #e50914;
     }
 
@@ -20,27 +21,43 @@
       font-family: 'Tajawal', sans-serif;
       background: #f5f5f5;
       color: #333;
+      width: 100%;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
     }
 
     header {
+      height: var(--header-height);
       background: #fff;
-      padding: 16px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      padding: 0 16px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
       border-bottom: 1px solid #eee;
     }
 
-    .idbet { color: var(--idbet-color); font-weight: bold; font-size: 1.1rem; }
-    .separator { color: #ccc; }
-    .slogan { color: #555; font-size: .9rem; }
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .idbet {
+      color: var(--idbet-color);
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .separator {
+      color: #ccc;
+    }
+
+    .slogan {
+      color: #555;
+      font-size: .9rem;
+    }
 
     .container {
-      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -51,25 +68,36 @@
       width: 100%;
       max-width: 340px;
       background: #fff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
       border-radius: 12px;
       display: flex;
       flex-direction: column;
-      position: relative;
       overflow: hidden;
     }
 
     .modal-header {
+      background: #fff;
       height: 90px;
-      border-bottom: 1px solid #eee;
+      position: relative;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding-top: 10px;
     }
 
     .modal-header img {
       height: 50px;
+      max-width: 160px;
       object-fit: contain;
+      display: block;
       transition: transform 0.2s ease;
     }
 
@@ -77,27 +105,67 @@
       transform: scale(0.85);
     }
 
-    .content-area {
-      padding: 20px;
-      display: none;
-      flex-direction: column;
-      animation: fade 0.3s ease;
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 18px;
+      color: #999;
+      cursor: pointer;
+      font-weight: bold;
     }
 
-    .content-area.active {
+    .body-wrapper {
+      background: #f9f9f9;
       display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 220px;
     }
 
-    @keyframes fade {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 0 12px;
+    }
+
+    .step-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #d9e2ed;
+    }
+
+    .step-circle.active {
+      background-color: #fff;
+      border: 2px solid #7bb33d;
+    }
+
+    .step-line {
+      height: 2px;
+      width: 40px;
+      background-color: #d9e2ed;
+    }
+
+    .modal-body {
+      padding: 20px 18px;
     }
 
     .amount-section {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .amount-label {
+      font-size: 13px;
+      color: #003366;
+      font-weight: 700;
+      line-height: 1.6;
     }
 
     .amount-input {
@@ -105,13 +173,26 @@
       height: 32px;
       padding: 4px 8px;
       font-size: 14px;
+      font-weight: 500;
+      background-color: #ffffff;
+      color: #000000;
       text-align: center;
-      background: #fff;
-      border: 1px solid #ccc;
+      border-top: 1px solid #9eaab7;
+      border-left: 1px solid #9eaab7;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 0;
       outline: none;
     }
 
+    .amount-input::-webkit-inner-spin-button,
+    .amount-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
     .deposit-button {
+      width: 100%;
       background: #e53935;
       color: #fff;
       border: none;
@@ -120,6 +201,7 @@
       font-size: 15px;
       cursor: pointer;
       border-radius: 0 0 12px 12px;
+      letter-spacing: 0.5px;
       position: relative;
       overflow: hidden;
     }
@@ -159,74 +241,85 @@
       100% { transform: rotate(360deg); }
     }
 
-    .blank-state {
-      height: 200px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .hidden {
+      display: none !important;
     }
-
-    .hidden { display: none !important; }
   </style>
 </head>
 <body>
 
 <header>
-  <span class="idbet">idbet</span><span class="separator">|</span><span class="slogan">وكيل الشحن الرسمي</span>
+  <div class="header-brand">
+    <span class="idbet">idbet</span><span class="separator">|</span><span class="slogan">وكيل الشحن الرسمي</span>
+  </div>
 </header>
 
 <div class="container">
   <div class="modal-content">
-
     <div class="modal-header">
-      <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="Logo" id="logo-img">
-    </div>
-
-    <!-- المرحلة 1 -->
-    <div class="content-area active" id="step1">
-      <div class="amount-section">
-        <input type="number" class="amount-input" value="100.00" />
+      <div class="logo-wrapper">
+        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo" id="logo-img" />
       </div>
-      <button class="deposit-button" id="deposit-btn">DEPOSIT</button>
+      <div class="close-btn" onclick="alert('Close')">×</div>
     </div>
 
-    <!-- شاشة التحميل -->
-    <div class="content-area" id="loading">
-      <div class="loader"></div>
-    </div>
+    <div class="body-wrapper" id="main-body">
+      <div id="step-1">
+        <div class="progress-bar">
+          <div class="step-circle active"></div>
+          <div class="step-line"></div>
+          <div class="step-circle"></div>
+          <div class="step-line"></div>
+          <div class="step-circle"></div>
+        </div>
 
-    <!-- المرحلة الأخيرة (بدون رسائل) -->
-    <div class="content-area" id="final">
-      <div class="blank-state"></div>
-    </div>
+        <div class="modal-body">
+          <div class="amount-section">
+            <div class="amount-label">
+              Amount (Min 100.00<br>
+              MAD / Max 5 000.00<br>
+              MAD):
+            </div>
+            <input type="number" class="amount-input" value="100.00">
+          </div>
+        </div>
 
+        <button class="deposit-button" id="deposit-btn">DEPOSIT</button>
+      </div>
+
+      <div id="loader" class="hidden">
+        <div class="loader"></div>
+      </div>
+
+      <div id="final" class="hidden"></div>
+    </div>
   </div>
 </div>
 
 <script>
-  const logo = document.getElementById("logo-img");
-  const depositBtn = document.getElementById("deposit-btn");
+  const logo = document.getElementById('logo-img');
+  const depositBtn = document.getElementById('deposit-btn');
+  const step1 = document.getElementById('step-1');
+  const loader = document.getElementById('loader');
+  const final = document.getElementById('final');
 
-  const step1 = document.getElementById("step1");
-  const loading = document.getElementById("loading");
-  const final = document.getElementById("final");
-
-  logo.addEventListener("mousedown", () => {
-    logo.classList.add("animate-push");
-    setTimeout(() => logo.classList.remove("animate-push"), 150);
+  // حركة الشعار
+  logo.addEventListener('mousedown', () => {
+    logo.classList.add('animate-push');
+    setTimeout(() => logo.classList.remove('animate-push'), 150);
   });
 
-  depositBtn.addEventListener("click", () => {
-    depositBtn.classList.add("active");
-    setTimeout(() => depositBtn.classList.remove("active"), 400);
+  // الضغط على الزر
+  depositBtn.addEventListener('click', () => {
+    depositBtn.classList.add('active');
+    setTimeout(() => depositBtn.classList.remove('active'), 400);
 
-    // التبديل بين المراحل
-    step1.classList.remove("active");
-    loading.classList.add("active");
+    step1.classList.add('hidden');
+    loader.classList.remove('hidden');
 
     setTimeout(() => {
-      loading.classList.remove("active");
-      final.classList.add("active");
+      loader.classList.add('hidden');
+      final.classList.remove('hidden');
     }, 2000);
   });
 </script>
