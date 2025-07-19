@@ -142,6 +142,15 @@
       text-align: center;
       border: 1px solid #ccc;
       outline: none;
+
+      /* إزالة السهمين في كروم وأوبرا */
+      -moz-appearance: textfield;
+    }
+
+    .amount-input::-webkit-inner-spin-button,
+    .amount-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
 
     .form-group {
