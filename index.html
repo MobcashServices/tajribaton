@@ -187,6 +187,7 @@
       font-size: 24px;
       cursor: pointer;
       position: relative;
+      overflow: hidden;
     }
 
     .upload-box input {
@@ -217,6 +218,12 @@
 
     .deposit-button:active {
       background: #d7332f;
+    }
+
+    .upload-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
   </style>
 </head>
@@ -258,17 +265,17 @@
 
       <div class="form-group">
         <label class="form-label">رقم الهاتف:</label>
-        <input type="text" class="form-input" id="phone" oninput="updateProgress()">
+        <input type="text" class="form-input" id="phone" maxlength="10" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateProgress();">
       </div>
 
       <div class="form-group">
         <label class="form-label">Screen shot of transaction:</label>
         <div class="upload-wrapper">
-          <div class="upload-box">
+          <div class="upload-box" id="imageBox">
             +
-            <input type="file" id="upload" accept=".jpg,.jpeg,.png,.pdf" onchange="updateProgress()">
+            <input type="file" id="upload" accept=".jpg,.jpeg,.png" onchange="handleImage(this)">
           </div>
-          <div class="upload-hint">(.jpg, .jpeg, .png, .pdf. The maximum file size is 20 MB)</div>
+          <div class="upload-hint">(.jpg, .jpeg, .png. الحد الأقصى 20MB)</div>
         </div>
       </div>
 
@@ -288,9 +295,22 @@
     const fullname = document.getElementById("fullname").value.trim();
     const file = document.getElementById("upload").files.length;
 
-    document.getElementById("dot1").classList.toggle("active", phone !== "");
+    document.getElementById("dot1").classList.toggle("active", phone.length === 10);
     document.getElementById("dot2").classList.toggle("active", file > 0);
     document.getElementById("dot3").classList.toggle("active", fullname !== "");
+  }
+
+  function handleImage(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const imageBox = document.getElementById("imageBox");
+      imageBox.innerHTML = `<img src="${e.target.result}" alt="screenshot">`;
+      updateProgress();
+    };
+    reader.readAsDataURL(file);
   }
 </script>
 
