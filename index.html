@@ -127,11 +127,23 @@
       line-height: 1.8;
     }
 
-    .copy-info button {
-      border: none;
-      background: none;
+    .copy-info .copy-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .copy-info img.copy-icon {
+      width: 16px;
+      height: 16px;
       cursor: pointer;
-      font-size: 16px;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+
+    .copy-info img.copy-icon:hover {
+      opacity: 1;
     }
 
     .amount-section {
@@ -273,13 +285,13 @@
       </div>
 
       <div class="copy-info">
-        <div>
-          <b>رقم الحساب (AHMED PAY) 2</b> <span id="accountNumber">0636866550</span>
-          <button onclick="copyToClipboard('accountNumber')">📋</button>
+        <div class="copy-line">
+          <b>رقم الحساب:</b> <span id="accountNumber">0636866550</span>
+          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" alt="Copy" class="copy-icon" onclick="copyToClipboard('accountNumber')">
         </div>
-        <div>
+        <div class="copy-line">
           <b>Motif:</b> <span id="motifText">FORMATION</span>
-          <button onclick="copyToClipboard('motifText')">📋</button>
+          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" alt="Copy" class="copy-icon" onclick="copyToClipboard('motifText')">
         </div>
       </div>
 
