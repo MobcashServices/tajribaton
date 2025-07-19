@@ -311,13 +311,23 @@
         <div class="copy-wrapper">
           <b>رقم الحساب:</b>
           <span id="accountNumber">0636866550</span>
-          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
+          <span onclick="copyWithTooltip('accountNumber', this)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </span>
           <div class="copy-tooltip">تم النسخ</div>
         </div>
         <div class="copy-wrapper">
           <b>Motif:</b>
           <span id="motifText">FORMATION</span>
-          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" class="copy-icon" onclick="copyWithTooltip('motifText', this)">
+          <span onclick="copyWithTooltip('motifText', this)">
+            <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+          </span>
           <div class="copy-tooltip">تم النسخ</div>
         </div>
       </div>
@@ -401,10 +411,10 @@
     reader.readAsDataURL(file);
   }
 
-  function copyWithTooltip(id, iconElement) {
+  function copyWithTooltip(id, svgElement) {
     const text = document.getElementById(id).textContent;
     navigator.clipboard.writeText(text).then(() => {
-      const tooltip = iconElement.nextElementSibling;
+      const tooltip = svgElement.parentElement.nextElementSibling;
       tooltip.classList.add("show");
       setTimeout(() => {
         tooltip.classList.remove("show");
