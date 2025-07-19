@@ -77,7 +77,6 @@
       flex-direction: column;
       gap: 20px;
     }
-
     .progress {
       display: flex;
       align-items: center;
@@ -114,14 +113,12 @@
     .step-line.active {
       background: #7bb33d;
     }
-
     .instruction-text {
       color: #e53935;
       font-size: 13px;
       text-align: center;
       margin-top: -10px;
     }
-
     .copy-info {
       font-size: 14px;
       display: flex;
@@ -164,7 +161,6 @@
       opacity: 1;
       transform: translateY(0);
     }
-
     .amount-section {
       display: flex;
       justify-content: space-between;
@@ -184,14 +180,7 @@
       text-align: center;
       border: 1px solid #ccc;
       outline: none;
-      -moz-appearance: textfield;
     }
-    .amount-input::-webkit-inner-spin-button,
-    .amount-input::-webkit-outer-spin-button {
-      -webkit-appearance: none;
-      margin: 0;
-    }
-
     .form-label {
       font-size: 13px;
       color: #333;
@@ -204,7 +193,6 @@
       outline: none;
       width: 100%;
     }
-
     .upload-box {
       width: 50px;
       height: 50px;
@@ -235,7 +223,6 @@
       top: 0;
       left: 0;
     }
-
     .deposit-button {
       background: #e53935;
       color: #fff;
@@ -293,7 +280,6 @@
           </span>
           <div class="copy-tooltip">تم النسخ</div>
         </div>
-
         <div class="copy-wrapper">
           <b>Motif:</b>
           <span id="motifText">FORMATION</span>
@@ -311,10 +297,9 @@
         <div class="amount-label">
           Amount (Min 100.00 MAD / Max 5 000.00 MAD):
         </div>
-        <input type="number" class="amount-input" value="100.00" id="amount" oninput="updateProgress()">
+        <input type="number" class="amount-input" placeholder="100.00" id="amount" oninput="updateProgress()">
       </div>
 
-      <!-- الحقول بتنسيق Grid -->
       <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; align-items: center;">
         <label class="form-label">رقم الهاتف:</label>
         <input type="text" class="form-input" id="phone" maxlength="10" inputmode="numeric" pattern="\d*" oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateProgress();">
