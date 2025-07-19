@@ -77,6 +77,8 @@
       flex-direction: column;
       gap: 20px;
     }
+
+    /* شريط التقدم */
     .progress {
       display: flex;
       align-items: center;
@@ -84,20 +86,36 @@
       gap: 10px;
     }
     .step-dot {
-      width: 12px;
-      height: 12px;
+      width: 24px;
+      height: 24px;
       border-radius: 50%;
-      background: #ccc;
-      transition: background 0.3s;
+      background: transparent;
+      border: 2px solid #7bb33d;
+      position: relative;
+      transition: all 0.3s ease;
     }
     .step-dot.active {
       background: #7bb33d;
     }
+    .step-dot.active::after {
+      content: '✔';
+      color: white;
+      font-size: 14px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -55%);
+    }
     .step-line {
       width: 40px;
-      height: 2px;
-      background: #ccc;
+      height: 3px;
+      background: #d0d0d0;
+      transition: background 0.3s ease;
     }
+    .step-line.active {
+      background: #7bb33d;
+    }
+
     .instruction-text {
       color: #e53935;
       font-size: 13px;
@@ -262,9 +280,9 @@
     <div class="modal-body">
       <div class="progress">
         <div class="step-dot" id="dot1"></div>
-        <div class="step-line"></div>
+        <div class="step-line" id="line1"></div>
         <div class="step-dot" id="dot2"></div>
-        <div class="step-line"></div>
+        <div class="step-line" id="line2"></div>
         <div class="step-dot" id="dot3"></div>
       </div>
 
@@ -337,20 +355,24 @@
     const phone = document.getElementById("phone").value.trim();
     const fullname = document.getElementById("fullname").value.trim();
     const fileInput = document.getElementById("upload");
-    document.getElementById("dot1").classList.toggle("active", phone.length === 10);
-    document.getElementById("dot2").classList.toggle("active", fileInput.files.length > 0);
     const fullnameWords = fullname.split(/\s+/);
+
+    const dot1 = document.getElementById("dot1");
+    const dot2 = document.getElementById("dot2");
     const dot3 = document.getElementById("dot3");
-    if (fullnameWords.length > 4) {
-      dot3.classList.remove("active");
-      dot3.style.background = "red";
-    } else if (fullname.length > 0) {
-      dot3.classList.add("active");
-      dot3.style.background = "#7bb33d";
-    } else {
-      dot3.classList.remove("active");
-      dot3.style.background = "#ccc";
-    }
+    const line1 = document.getElementById("line1");
+    const line2 = document.getElementById("line2");
+
+    const step1Valid = phone.length === 10;
+    const step2Valid = fileInput.files.length > 0;
+    const step3Valid = fullname.length > 0 && fullnameWords.length <= 4;
+
+    dot1.classList.toggle("active", step1Valid);
+    dot2.classList.toggle("active", step2Valid);
+    dot3.classList.toggle("active", step3Valid);
+
+    line1.classList.toggle("active", step1Valid && step2Valid);
+    line2.classList.toggle("active", step2Valid && step3Valid);
   }
 
   function handleImage(input) {
