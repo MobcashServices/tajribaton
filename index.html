@@ -78,7 +78,6 @@
       gap: 20px;
     }
 
-    /* شريط التقدم */
     .progress {
       display: flex;
       align-items: center;
@@ -122,20 +121,20 @@
       text-align: center;
       margin-top: -10px;
     }
+
     .copy-info {
-      text-align: center;
       font-size: 14px;
-      line-height: 1.8;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
+      direction: rtl;
     }
     .copy-wrapper {
-      position: relative;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 6px;
+      gap: 5px;
+      flex-wrap: wrap;
+      position: relative;
     }
     .copy-icon {
       width: 18px;
@@ -149,22 +148,23 @@
     }
     .copy-tooltip {
       position: absolute;
-      top: -30px;
+      top: -25px;
       background: #4caf50;
       color: white;
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 4px;
       font-size: 12px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s, transform 0.3s;
-      transform: translateY(10px);
+      transform: translateY(5px);
       white-space: nowrap;
     }
     .copy-tooltip.show {
       opacity: 1;
       transform: translateY(0);
     }
+
     .amount-section {
       display: flex;
       justify-content: space-between;
@@ -293,6 +293,8 @@
       <div class="copy-info">
         <div class="copy-wrapper">
           <b>رقم الحساب:</b>
+          <span>(<b>AHMED PAY</b>)</span>
+          <span>2</span>
           <span id="accountNumber">0636866550</span>
           <span onclick="copyWithTooltip('accountNumber', this)">
             <svg xmlns="http://www.w3.org/2000/svg" class="copy-icon" viewBox="0 0 24 24" fill="none" stroke="#4caf50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -302,6 +304,7 @@
           </span>
           <div class="copy-tooltip">تم النسخ</div>
         </div>
+
         <div class="copy-wrapper">
           <b>Motif:</b>
           <span id="motifText">FORMATION</span>
@@ -317,9 +320,7 @@
 
       <div class="amount-section">
         <div class="amount-label">
-          المبلغ (أدنى 100.00<br>
-          MAD / أقصى 5 000.00<br>
-          MAD):
+          المبلغ (أدنى 100.00<br>MAD / أقصى 5 000.00 MAD):
         </div>
         <input type="number" class="amount-input" value="100.00" id="amount" oninput="updateProgress()">
       </div>
