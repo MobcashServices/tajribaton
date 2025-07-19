@@ -152,16 +152,17 @@
 
     .copy-tooltip {
       position: absolute;
-      top: -28px;
+      top: -30px;
       background: #4caf50;
       color: white;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       font-size: 12px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s, transform 0.3s;
       transform: translateY(10px);
+      white-space: nowrap;
     }
 
     .copy-tooltip.show {
@@ -317,7 +318,7 @@
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </svg>
           </span>
-          <div class="copy-tooltip">تم النسخ</div>
+          <div class="copy-tooltip">تم النسخ ✅</div>
         </div>
         <div class="copy-wrapper">
           <b>Motif:</b>
@@ -328,7 +329,7 @@
               <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
             </svg>
           </span>
-          <div class="copy-tooltip">تم النسخ</div>
+          <div class="copy-tooltip">تم النسخ ✅</div>
         </div>
       </div>
 
@@ -398,7 +399,6 @@
     const reader = new FileReader();
     reader.onload = function(e) {
       const imageBox = document.getElementById("imageBox");
-
       const oldImg = imageBox.querySelector('img');
       if (oldImg) oldImg.remove();
 
@@ -411,10 +411,10 @@
     reader.readAsDataURL(file);
   }
 
-  function copyWithTooltip(id, svgElement) {
+  function copyWithTooltip(id, triggerElement) {
     const text = document.getElementById(id).textContent;
     navigator.clipboard.writeText(text).then(() => {
-      const tooltip = svgElement.parentElement.nextElementSibling;
+      const tooltip = triggerElement.parentElement.querySelector('.copy-tooltip');
       tooltip.classList.add("show");
       setTimeout(() => {
         tooltip.classList.remove("show");
