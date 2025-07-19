@@ -121,6 +121,19 @@
       margin-top: -10px;
     }
 
+    .copy-info {
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .copy-info button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
     .amount-section {
       display: flex;
       justify-content: space-between;
@@ -256,13 +269,24 @@
       </div>
 
       <div class="instruction-text">
-        Before making a request, please transfer funds within 10 minutes using the payment details specified below.
+        قبل أن تقدم طلبك، قم بالتحويل خلال 10 دقائق باستخدام البيانات التالية:
+      </div>
+
+      <div class="copy-info">
+        <div>
+          <b>رقم الحساب (AHMED PAY) 2</b> <span id="accountNumber">0636866550</span>
+          <button onclick="copyToClipboard('accountNumber')">📋</button>
+        </div>
+        <div>
+          <b>Motif:</b> <span id="motifText">FORMATION</span>
+          <button onclick="copyToClipboard('motifText')">📋</button>
+        </div>
       </div>
 
       <div class="amount-section">
         <div class="amount-label">
-          Amount (Min 100.00<br>
-          MAD / Max 5 000.00<br>
+          المبلغ (أدنى 100.00<br>
+          MAD / أقصى 5 000.00<br>
           MAD):
         </div>
         <input type="number" class="amount-input" value="100.00" id="amount" oninput="updateProgress()">
@@ -274,7 +298,7 @@
       </div>
 
       <div class="form-group">
-        <label class="form-label">Screen shot of transaction:</label>
+        <label class="form-label">لقطة الشاشة:</label>
         <div class="upload-wrapper">
           <div class="upload-box" id="imageBox">
             +
@@ -302,7 +326,20 @@
 
     document.getElementById("dot1").classList.toggle("active", phone.length === 10);
     document.getElementById("dot2").classList.toggle("active", fileInput.files.length > 0);
-    document.getElementById("dot3").classList.toggle("active", fullname.length > 0);
+
+    const fullnameWords = fullname.split(/\s+/);
+    const dot3 = document.getElementById("dot3");
+
+    if (fullnameWords.length > 4) {
+      dot3.classList.remove("active");
+      dot3.style.background = "red";
+    } else if (fullname.length > 0) {
+      dot3.classList.add("active");
+      dot3.style.background = "#7bb33d";
+    } else {
+      dot3.classList.remove("active");
+      dot3.style.background = "#ccc";
+    }
   }
 
   function handleImage(input) {
@@ -323,6 +360,11 @@
       updateProgress();
     };
     reader.readAsDataURL(file);
+  }
+
+  function copyToClipboard(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text);
   }
 </script>
 
