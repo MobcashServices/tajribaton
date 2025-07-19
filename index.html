@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>CashPlus Modal</title>
+  <title>idbet - CashPlus</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --idbet-color: #e50914;
+    }
+
     * {
+      margin: 0;
+      padding: 0;
       box-sizing: border-box;
     }
 
     body {
-      margin: 0;
       font-family: 'Tajawal', sans-serif;
       background: #f0f0f0;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: #fff;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      border-bottom: 1px solid #eee;
+    }
+
+    .idbet {
+      color: var(--idbet-color);
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    .separator {
+      color: #ccc;
+    }
+
+    .slogan {
+      color: #555;
+      font-size: .9rem;
+    }
+
+    .container {
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      padding: 30px 16px;
     }
 
     .modal {
@@ -117,30 +155,38 @@
 </head>
 <body>
 
-<div class="modal">
-  <div class="modal-header">
-    <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo">
-  </div>
+<header>
+  <span class="idbet">idbet</span>
+  <span class="separator">|</span>
+  <span class="slogan">وكيل الشحن الرسمي</span>
+</header>
 
-  <div class="modal-body">
-    <div class="progress">
-      <div class="step-dot active"></div>
-      <div class="step-line"></div>
-      <div class="step-dot"></div>
-      <div class="step-line"></div>
-      <div class="step-dot"></div>
+<div class="container">
+  <div class="modal">
+    <div class="modal-header">
+      <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo">
     </div>
 
-    <div class="amount-section">
-      <div class="amount-label">
-        Amount (Min 100.00<br>
-        MAD / Max 5 000.00<br>
-        MAD):
+    <div class="modal-body">
+      <div class="progress">
+        <div class="step-dot active"></div>
+        <div class="step-line"></div>
+        <div class="step-dot"></div>
+        <div class="step-line"></div>
+        <div class="step-dot"></div>
       </div>
-      <input type="number" class="amount-input" value="100.00">
-    </div>
 
-    <button class="deposit-button">DEPOSIT</button>
+      <div class="amount-section">
+        <div class="amount-label">
+          Amount (Min 100.00<br>
+          MAD / Max 5 000.00<br>
+          MAD):
+        </div>
+        <input type="number" class="amount-input" value="100.00">
+      </div>
+
+      <button class="deposit-button">DEPOSIT</button>
+    </div>
   </div>
 </div>
 
