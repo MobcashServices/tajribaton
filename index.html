@@ -372,7 +372,7 @@
   function copyWithTooltip(id, triggerElement) {
     const text = document.getElementById(id).textContent;
     navigator.clipboard.writeText(text).then(() => {
-      const tooltip = triggerElement.parentElement.querySelector('.copy-tooltip');
+      const tooltip = triggerElement.nextElementSibling;
       tooltip.classList.add("show");
       setTimeout(() => {
         tooltip.classList.remove("show");
