@@ -23,6 +23,7 @@
       color: #333;
       width: 100%;
       min-height: 100vh;
+      position: relative;
     }
 
     header {
@@ -72,6 +73,8 @@
       border-radius: 12px;
       display: flex;
       flex-direction: column;
+      position: relative;
+      z-index: 2;
     }
 
     .modal-header {
@@ -112,6 +115,7 @@
       color: #999;
       cursor: pointer;
       font-weight: bold;
+      z-index: 3;
     }
 
     .body-wrapper {
@@ -227,6 +231,17 @@
         left: 100%;
       }
     }
+
+    /* طبقة مودال فوقية */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
   </style>
 </head>
 <body>
@@ -237,8 +252,8 @@
   </div>
 </header>
 
-<div class="container">
-  <div class="modal-content">
+<div class="container" id="main-container">
+  <div class="modal-content" id="main-modal">
     <div class="modal-header">
       <div class="logo-wrapper">
         <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo" id="logo-img" />
@@ -274,18 +289,45 @@
 </div>
 
 <script>
-  // تأثير الصورة: ترجُع للخلف وتعود للأمام بدون اهتزاز
-  const logo = document.getElementById('logo-img');
-  logo.addEventListener('mousedown', () => {
-    logo.classList.add('animate-push');
-    setTimeout(() => logo.classList.remove('animate-push'), 150);
-  });
+  function addInteractions(modal) {
+    const logo = modal.querySelector('img');
+    const btn = modal.querySelector('button');
+    const close = modal.querySelector('.close-btn');
 
-  // تأثير اللمعان عند الضغط على الزر الأحمر
-  const btn = document.getElementById('deposit-btn');
-  btn.addEventListener('mousedown', () => {
-    btn.classList.add('active');
-    setTimeout(() => btn.classList.remove('active'), 400);
+    // حركة الشعار
+    logo.addEventListener('mousedown', () => {
+      logo.classList.add('animate-push');
+      setTimeout(() => logo.classList.remove('animate-push'), 150);
+    });
+
+    // لمعان الزر
+    btn.addEventListener('mousedown', () => {
+      btn.classList.add('active');
+      setTimeout(() => btn.classList.remove('active'), 400);
+    });
+
+    // غلق المودال المنبثق فقط
+    if (close && modal.classList.contains('popup')) {
+      close.addEventListener('click', () => {
+        modal.parentElement.remove();
+      });
+    }
+  }
+
+  // تفعيل على الواجهة الأصلية
+  addInteractions(document.getElementById('main-modal'));
+
+  // عند الضغط على زر الإيداع، افتح نسخة جديدة فوق الأصلية
+  document.getElementById('deposit-btn').addEventListener('click', () => {
+    const modalClone = document.getElementById('main-modal').cloneNode(true);
+    modalClone.classList.add('popup');
+
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    overlay.appendChild(modalClone);
+    document.body.appendChild(overlay);
+
+    addInteractions(modalClone);
   });
 </script>
 
