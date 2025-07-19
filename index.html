@@ -289,7 +289,7 @@
         <input type="text" class="form-input" id="fullname" placeholder="اسمك في كاش بلوس" oninput="updateProgress()">
       </div>
 
-      <button class="deposit-button">DEPOSIT</button>
+      <button class="deposit-button">Confirm</button>
     </div>
   </div>
 </div>
@@ -313,11 +313,9 @@
     reader.onload = function(e) {
       const imageBox = document.getElementById("imageBox");
 
-      // إزالة أي صور سابقة قبل الإضافة
       const oldImg = imageBox.querySelector('img');
       if (oldImg) oldImg.remove();
 
-      // إضافة الصورة
       const img = document.createElement('img');
       img.src = e.target.result;
       imageBox.appendChild(img);
