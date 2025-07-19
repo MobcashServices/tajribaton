@@ -60,7 +60,7 @@
 
     .modal {
       width: 320px;
-      background: #f3f3f3; /* ✅ رمادية مثل الصورة */
+      background: #f3f3f3;
       border: 1px solid #ccc;
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
       display: flex;
@@ -69,7 +69,7 @@
     }
 
     .modal-header {
-      background: #fff; /* ✅ بيضاء مثل الصورة */
+      background: #fff;
       height: 80px;
       display: flex;
       align-items: center;
@@ -83,7 +83,7 @@
     }
 
     .modal-body {
-      background: #f3f3f3; /* ✅ نفس لون خلفية النموذج */
+      background: #f3f3f3;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -112,6 +112,13 @@
       width: 40px;
       height: 2px;
       background: #ccc;
+    }
+
+    .instruction-text {
+      color: #e53935;
+      font-size: 13px;
+      text-align: center;
+      margin-top: -10px;
     }
 
     .amount-section {
@@ -175,6 +182,10 @@
         <div class="step-dot"></div>
         <div class="step-line"></div>
         <div class="step-dot"></div>
+      </div>
+
+      <div class="instruction-text">
+        Before making a request, please transfer funds within 10 minutes using the payment details specified below.
       </div>
 
       <div class="amount-section">
