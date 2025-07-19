@@ -196,12 +196,17 @@
       width: 100%;
       height: 100%;
       cursor: pointer;
+      top: 0;
+      left: 0;
     }
 
     .upload-box img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     .upload-hint {
@@ -307,7 +312,16 @@
     const reader = new FileReader();
     reader.onload = function(e) {
       const imageBox = document.getElementById("imageBox");
-      imageBox.innerHTML = `<img src="${e.target.result}" alt="screenshot">`;
+
+      // إزالة أي صور سابقة قبل الإضافة
+      const oldImg = imageBox.querySelector('img');
+      if (oldImg) oldImg.remove();
+
+      // إضافة الصورة
+      const img = document.createElement('img');
+      img.src = e.target.result;
+      imageBox.appendChild(img);
+
       updateProgress();
     };
     reader.readAsDataURL(file);
