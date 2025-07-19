@@ -9,13 +9,11 @@
     :root {
       --idbet-color: #e50914;
     }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     body {
       font-family: 'Tajawal', sans-serif;
       background: #f0f0f0;
@@ -24,7 +22,6 @@
       display: flex;
       flex-direction: column;
     }
-
     header {
       background: #fff;
       padding: 16px;
@@ -34,22 +31,18 @@
       box-shadow: 0 1px 4px rgba(0,0,0,0.05);
       border-bottom: 1px solid #eee;
     }
-
     .idbet {
       color: var(--idbet-color);
       font-weight: bold;
       font-size: 1.1rem;
     }
-
     .separator {
       color: #ccc;
     }
-
     .slogan {
       color: #555;
       font-size: .9rem;
     }
-
     .container {
       flex: 1;
       display: flex;
@@ -57,7 +50,6 @@
       align-items: center;
       padding: 30px 16px;
     }
-
     .modal {
       width: 320px;
       background: #f3f3f3;
@@ -66,7 +58,6 @@
       display: flex;
       flex-direction: column;
     }
-
     .modal-header {
       background: #fff;
       height: 80px;
@@ -75,12 +66,10 @@
       justify-content: center;
       border-bottom: 1px solid #ddd;
     }
-
     .modal-header img {
       height: 40px;
       object-fit: contain;
     }
-
     .modal-body {
       background: #f3f3f3;
       padding: 20px;
@@ -88,14 +77,12 @@
       flex-direction: column;
       gap: 20px;
     }
-
     .progress {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
     }
-
     .step-dot {
       width: 12px;
       height: 12px;
@@ -103,24 +90,20 @@
       background: #ccc;
       transition: background 0.3s;
     }
-
     .step-dot.active {
       background: #7bb33d;
     }
-
     .step-line {
       width: 40px;
       height: 2px;
       background: #ccc;
     }
-
     .instruction-text {
       color: #e53935;
       font-size: 13px;
       text-align: center;
       margin-top: -10px;
     }
-
     .copy-info {
       text-align: center;
       font-size: 14px;
@@ -129,7 +112,6 @@
       flex-direction: column;
       gap: 10px;
     }
-
     .copy-wrapper {
       position: relative;
       display: flex;
@@ -137,7 +119,6 @@
       justify-content: center;
       gap: 6px;
     }
-
     .copy-icon {
       width: 18px;
       height: 18px;
@@ -145,43 +126,38 @@
       opacity: 0.8;
       transition: opacity 0.2s;
     }
-
     .copy-icon:hover {
       opacity: 1;
     }
-
     .copy-tooltip {
       position: absolute;
-      top: -28px;
+      top: -30px;
       background: #4caf50;
       color: white;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       font-size: 12px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s, transform 0.3s;
       transform: translateY(10px);
+      white-space: nowrap;
     }
-
     .copy-tooltip.show {
       opacity: 1;
       transform: translateY(0);
     }
-
     .amount-section {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-
     .amount-label {
       font-size: 13px;
       color: #333;
       font-weight: 600;
       line-height: 1.4;
     }
-
     .amount-input {
       width: 100px;
       height: 32px;
@@ -192,24 +168,20 @@
       outline: none;
       -moz-appearance: textfield;
     }
-
     .amount-input::-webkit-inner-spin-button,
     .amount-input::-webkit-outer-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-
     .form-group {
       display: flex;
       flex-direction: column;
       gap: 6px;
     }
-
     .form-label {
       font-size: 13px;
       color: #333;
     }
-
     .form-input {
       height: 32px;
       padding: 4px 8px;
@@ -217,13 +189,11 @@
       border: 1px solid #ccc;
       outline: none;
     }
-
     .upload-wrapper {
       display: flex;
       align-items: center;
       gap: 10px;
     }
-
     .upload-box {
       width: 50px;
       height: 50px;
@@ -237,7 +207,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .upload-box input {
       position: absolute;
       opacity: 0;
@@ -247,7 +216,6 @@
       top: 0;
       left: 0;
     }
-
     .upload-box img {
       width: 100%;
       height: 100%;
@@ -256,13 +224,11 @@
       top: 0;
       left: 0;
     }
-
     .upload-hint {
       font-size: 11px;
       color: #666;
       line-height: 1.4;
     }
-
     .deposit-button {
       background: #e53935;
       color: #fff;
@@ -274,7 +240,6 @@
       width: 100%;
       border-radius: 0;
     }
-
     .deposit-button:active {
       background: #d7332f;
     }
@@ -372,13 +337,10 @@
     const phone = document.getElementById("phone").value.trim();
     const fullname = document.getElementById("fullname").value.trim();
     const fileInput = document.getElementById("upload");
-
     document.getElementById("dot1").classList.toggle("active", phone.length === 10);
     document.getElementById("dot2").classList.toggle("active", fileInput.files.length > 0);
-
     const fullnameWords = fullname.split(/\s+/);
     const dot3 = document.getElementById("dot3");
-
     if (fullnameWords.length > 4) {
       dot3.classList.remove("active");
       dot3.style.background = "red";
@@ -394,27 +356,23 @@
   function handleImage(input) {
     const file = input.files[0];
     if (!file) return;
-
     const reader = new FileReader();
     reader.onload = function(e) {
       const imageBox = document.getElementById("imageBox");
-
       const oldImg = imageBox.querySelector('img');
       if (oldImg) oldImg.remove();
-
       const img = document.createElement('img');
       img.src = e.target.result;
       imageBox.appendChild(img);
-
       updateProgress();
     };
     reader.readAsDataURL(file);
   }
 
-  function copyWithTooltip(id, svgElement) {
+  function copyWithTooltip(id, triggerElement) {
     const text = document.getElementById(id).textContent;
     navigator.clipboard.writeText(text).then(() => {
-      const tooltip = svgElement.parentElement.nextElementSibling;
+      const tooltip = triggerElement.parentElement.querySelector('.copy-tooltip');
       tooltip.classList.add("show");
       setTimeout(() => {
         tooltip.classList.remove("show");
