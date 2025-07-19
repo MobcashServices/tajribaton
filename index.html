@@ -125,25 +125,48 @@
       text-align: center;
       font-size: 14px;
       line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .copy-info .copy-line {
+    .copy-wrapper {
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
     }
 
-    .copy-info img.copy-icon {
-      width: 16px;
-      height: 16px;
+    .copy-icon {
+      width: 18px;
+      height: 18px;
       cursor: pointer;
       opacity: 0.8;
       transition: opacity 0.2s;
     }
 
-    .copy-info img.copy-icon:hover {
+    .copy-icon:hover {
       opacity: 1;
+    }
+
+    .copy-tooltip {
+      position: absolute;
+      top: -28px;
+      background: #4caf50;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      transform: translateY(10px);
+    }
+
+    .copy-tooltip.show {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .amount-section {
@@ -285,13 +308,17 @@
       </div>
 
       <div class="copy-info">
-        <div class="copy-line">
-          <b>رقم الحساب:</b> <span id="accountNumber">0636866550</span>
-          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" alt="Copy" class="copy-icon" onclick="copyToClipboard('accountNumber')">
+        <div class="copy-wrapper">
+          <b>رقم الحساب:</b>
+          <span id="accountNumber">0636866550</span>
+          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" class="copy-icon" onclick="copyWithTooltip('accountNumber', this)">
+          <div class="copy-tooltip">تم النسخ</div>
         </div>
-        <div class="copy-line">
-          <b>Motif:</b> <span id="motifText">FORMATION</span>
-          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" alt="Copy" class="copy-icon" onclick="copyToClipboard('motifText')">
+        <div class="copy-wrapper">
+          <b>Motif:</b>
+          <span id="motifText">FORMATION</span>
+          <img src="https://i.postimg.cc/3x3QzSGq/copy-icon.png" class="copy-icon" onclick="copyWithTooltip('motifText', this)">
+          <div class="copy-tooltip">تم النسخ</div>
         </div>
       </div>
 
@@ -374,9 +401,15 @@
     reader.readAsDataURL(file);
   }
 
-  function copyToClipboard(id) {
+  function copyWithTooltip(id, iconElement) {
     const text = document.getElementById(id).textContent;
-    navigator.clipboard.writeText(text);
+    navigator.clipboard.writeText(text).then(() => {
+      const tooltip = iconElement.nextElementSibling;
+      tooltip.classList.add("show");
+      setTimeout(() => {
+        tooltip.classList.remove("show");
+      }, 1000);
+    });
   }
 </script>
 
