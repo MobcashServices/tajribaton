@@ -1,24 +1,293 @@
-<style>
-  /* ... باقي التنسيقات السابقة ... */
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>idbet - CashPlus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --header-height: 60px;
+      --idbet-color: #e50914;
+    }
 
-  .modal-header img {
-    height: 50px;
-    max-width: 160px;
-    object-fit: contain;
-    display: block;
-    transition: transform 0.2s ease;
-  }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  .modal-header img.animate-push {
-    transform: scale(0.85);
-  }
-</style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: #f5f5f5;
+      color: #333;
+      width: 100%;
+      min-height: 100vh;
+    }
 
-<!-- داخل <script> في الأسفل -->
+    header {
+      height: var(--header-height);
+      background: #fff;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .05);
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+    }
+
+    .idbet {
+      color: var(--idbet-color);
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+
+    .separator {
+      color: #ccc;
+    }
+
+    .slogan {
+      color: #555;
+      font-size: .9rem;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 16px;
+    }
+
+    .modal-content {
+      width: 100%;
+      max-width: 340px;
+      background: #fff;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      background: #fff;
+      height: 90px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding-top: 10px;
+    }
+
+    .modal-header img {
+      height: 50px;
+      max-width: 160px;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease;
+    }
+
+    .modal-header img.animate-push {
+      transform: scale(0.85);
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      font-size: 18px;
+      color: #999;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .body-wrapper {
+      background: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .progress-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 0 12px;
+    }
+
+    .step-circle {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background-color: #d9e2ed;
+    }
+
+    .step-circle.active {
+      background-color: #fff;
+      border: 2px solid #7bb33d;
+    }
+
+    .step-line {
+      height: 2px;
+      width: 40px;
+      background-color: #d9e2ed;
+    }
+
+    .modal-body {
+      padding: 20px 18px;
+    }
+
+    .amount-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .amount-label {
+      font-size: 13px;
+      color: #003366;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    .amount-input {
+      width: 140px;
+      height: 32px;
+      padding: 4px 8px;
+      font-size: 14px;
+      font-weight: 500;
+      background-color: #ffffff;
+      color: #000000;
+      text-align: center;
+      border-top: 1px solid #9eaab7;
+      border-left: 1px solid #9eaab7;
+      border-right: none;
+      border-bottom: none;
+      border-radius: 0;
+      outline: none;
+    }
+
+    .amount-input::-webkit-inner-spin-button,
+    .amount-input::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    .deposit-button {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      background: #e53935;
+      color: #fff;
+      border: none;
+      padding: 13px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 0 0 12px 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .deposit-button::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+      pointer-events: none;
+    }
+
+    .deposit-button.active::after {
+      animation: flashFilter 0.4s ease forwards;
+    }
+
+    @keyframes flashFilter {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <span class="idbet">idbet</span><span class="separator">|</span><span class="slogan">وكيل الشحن الرسمي</span>
+  </div>
+</header>
+
+<div class="container">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="logo-wrapper">
+        <img src="https://i.postimg.cc/JzRX7sPP/cash-plus.png" alt="CashPlus Logo" id="logo-img" />
+      </div>
+      <div class="close-btn" onclick="alert('Close')">×</div>
+    </div>
+
+    <div class="body-wrapper">
+      <div>
+        <div class="progress-bar">
+          <div class="step-circle active"></div>
+          <div class="step-line"></div>
+          <div class="step-circle"></div>
+          <div class="step-line"></div>
+          <div class="step-circle"></div>
+        </div>
+
+        <div class="modal-body">
+          <div class="amount-section">
+            <div class="amount-label">
+              Amount (Min 100.00<br>
+              MAD / Max 5 000.00<br>
+              MAD):
+            </div>
+            <input type="number" class="amount-input" value="100.00">
+          </div>
+        </div>
+      </div>
+
+      <button class="deposit-button" id="deposit-btn">DEPOSIT</button>
+    </div>
+  </div>
+</div>
+
 <script>
+  // تأثير الصورة: ترجُع للخلف وتعود للأمام بدون اهتزاز
   const logo = document.getElementById('logo-img');
   logo.addEventListener('mousedown', () => {
     logo.classList.add('animate-push');
-    setTimeout(() => logo.classList.remove('animate-push'), 150); // ثم تعود بسرعة
+    setTimeout(() => logo.classList.remove('animate-push'), 150);
+  });
+
+  // تأثير اللمعان عند الضغط على الزر الأحمر
+  const btn = document.getElementById('deposit-btn');
+  btn.addEventListener('mousedown', () => {
+    btn.classList.add('active');
+    setTimeout(() => btn.classList.remove('active'), 400);
   });
 </script>
+
+</body>
+</html>
